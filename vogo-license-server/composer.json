@@ -1,0 +1,6 @@
+{
+    "require": {
+        "twilio/sdk": "^8.6",
+        "firebase/php-jwt": "^6.11"
+    }
+}

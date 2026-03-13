@@ -1,0 +1,2455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vogo>
+  <!-- VOGO REST database table registry: defines application tables and SQL used for installation/migrations. -->
+  <!-- Sections below group table declarations consumed by the REST installation layer. -->
+  <vogo-objects-tables>
+    <!-- Additional table mappings synchronized from SQL_INSTALL.sql to prevent missing-object runtime errors. -->
+
+    <!-- Table definition mirrored from SQL_INSTALL.sql: user_documents_def -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: support_users -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: cities -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: mall_locations -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: category_malls -->
+    <!-- Diagnostics compatibility: keep relational links as indexed columns to avoid FK engine/type issues on heterogeneous WP installs. -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_product_malls -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_product_cities -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_product_meta_action -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_product_recommendations -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_product_action -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_product_tbl -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_vogo_category_meta_action -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: orders -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_orders_delivery -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_orders_lines -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_order_transporter_pos -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_order_transporter_rejects -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_order_vendor -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_thread_calls -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_transporters -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_user_addresses -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_user_bank_accounts -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo _user_document_data -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_user_groups -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_user_group_categories -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_user_group_users -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_vendors_picking_points -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_chat_blocklist -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_chat_history -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_chat_message -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_chat_thread -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_user_pin_code -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_user_email_otp -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_product_category_cities -->
+    <!-- Table definition mirrored from SQL_INSTALL.sql: vogo_product_vendor -->
+    <table name="wp_vogo_activate_and_get_updates_calls">
+      <columns>
+        <column name="id" type="BIGINT UNSIGNED NOT NULL AUTO_INCREMENT" />
+        <column name="created_at" type="DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP" />
+        <column name="ip_address" type="VARCHAR(45) NULL" />
+        <column name="forwarded_for" type="TEXT NULL" />
+        <column name="user_agent" type="TEXT NULL" />
+        <column name="request_method" type="VARCHAR(10) NULL" />
+        <column name="request_route" type="VARCHAR(255) NULL" />
+        <column name="request_uri" type="TEXT NULL" />
+        <column name="referer" type="TEXT NULL" />
+        <column name="server_name" type="VARCHAR(191) NULL" />
+        <column name="server_addr" type="VARCHAR(45) NULL" />
+        <column name="host" type="VARCHAR(191) NULL" />
+        <column name="db_name" type="VARCHAR(191) NULL" />
+        <column name="cod_activare" type="VARCHAR(191) NULL" />
+        <column name="current_version" type="VARCHAR(191) NULL" />
+        <column name="query_params" type="LONGTEXT NULL" />
+        <column name="body_params" type="LONGTEXT NULL" />
+        <column name="json_params" type="LONGTEXT NULL" />
+        <column name="raw_body" type="LONGTEXT NULL" />
+        <column name="headers" type="LONGTEXT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_activate_and_get_updates_calls` (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ip_address VARCHAR(45) NULL,
+  forwarded_for TEXT NULL,
+  user_agent TEXT NULL,
+  request_method VARCHAR(10) NULL,
+  request_route VARCHAR(255) NULL,
+  request_uri TEXT NULL,
+  referer TEXT NULL,
+  server_name VARCHAR(191) NULL,
+  server_addr VARCHAR(45) NULL,
+  host VARCHAR(191) NULL,
+  db_name VARCHAR(191) NULL,
+  cod_activare VARCHAR(191) NULL,
+  current_version VARCHAR(191) NULL,
+  query_params LONGTEXT NULL,
+  body_params LONGTEXT NULL,
+  json_params LONGTEXT NULL,
+  raw_body LONGTEXT NULL,
+  headers LONGTEXT NULL,
+  PRIMARY KEY (id),
+  KEY created_at (created_at),
+  KEY cod_activare (cod_activare)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_areas_of_interest">
+      <columns>
+        <column name="id" type="BIGINT(20) NOT NULL AUTO_INCREMENT" />
+        <column name="area_name" type="VARCHAR(255) NOT NULL" />
+        <column name="description" type="TEXT NULL" />
+        <column name="is_active" type="TINYINT(1) NULL DEFAULT 1" />
+        <column name="created_at" type="DATETIME NULL DEFAULT CURRENT_TIMESTAMP" />
+        <column name="position" type="FLOAT NOT NULL DEFAULT 0" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_areas_of_interest` (
+  id BIGINT(20) NOT NULL AUTO_INCREMENT,
+  area_name VARCHAR(255) NOT NULL,
+  description TEXT NULL,
+  is_active TINYINT(1) NULL DEFAULT 1,
+  created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  position FLOAT NOT NULL DEFAULT 0,
+  PRIMARY KEY (id)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_audit">
+      <columns>
+        <column name="id" type="BIGINT(20) NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="BIGINT(20) NULL" />
+        <column name="username" type="VARCHAR(255) NULL" />
+        <column name="ip_address" type="VARCHAR(45) NULL" />
+        <column name="user_agent" type="TEXT NULL" />
+        <column name="success" type="TINYINT(1) NULL" />
+        <column name="action_code" type="TEXT NULL" />
+        <column name="action_info" type="TEXT NULL" />
+        <column name="created_at" type="DATETIME NULL DEFAULT CURRENT_TIMESTAMP" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_audit` (
+  id BIGINT(20) NOT NULL AUTO_INCREMENT,
+  user_id BIGINT(20) NULL,
+  username VARCHAR(255) NULL,
+  ip_address VARCHAR(45) NULL,
+  user_agent TEXT NULL,
+  success TINYINT(1) NULL,
+  action_code TEXT NULL,
+  action_info TEXT NULL,
+  created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_brand_options">
+      <columns>
+        <column name="id" type="BIGINT UNSIGNED NOT NULL AUTO_INCREMENT" />
+        <column name="option_key" type="VARCHAR(191) NOT NULL" />
+        <column name="option_value" type="LONGTEXT NOT NULL" />
+        <column name="option_description" type="TEXT NULL" />
+        <column name="option_category" type="VARCHAR(191) NULL" />
+        <column name="updated_at" type="DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_brand_options` (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  option_key VARCHAR(191) NOT NULL,
+  option_value LONGTEXT NOT NULL,
+  option_description TEXT NULL,
+  option_category VARCHAR(191) NULL,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY option_key (option_key)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_calendar">
+      <columns>
+        <column name="id" type="BIGINT(20) NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="BIGINT(20) NOT NULL" />
+        <column name="event_name" type="VARCHAR(255) NOT NULL" />
+        <column name="location" type="VARCHAR(255) NULL" />
+        <column name="event_datetime" type="DATETIME NOT NULL" />
+        <column name="duration" type="INT(11) NULL" />
+        <column name="participants_names" type="TEXT NULL" />
+        <column name="done_checked" type="TINYINT(1) NULL DEFAULT 0" />
+        <column name="created_at" type="DATETIME NULL DEFAULT CURRENT_TIMESTAMP" />
+        <column name="created_by" type="BIGINT(20) NULL" />
+        <column name="modified_by" type="BIGINT(20) NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_calendar` (
+  id BIGINT(20) NOT NULL AUTO_INCREMENT,
+  user_id BIGINT(20) NOT NULL,
+  event_name VARCHAR(255) NOT NULL,
+  location VARCHAR(255) NULL,
+  event_datetime DATETIME NOT NULL,
+  duration INT(11) NULL,
+  participants_names TEXT NULL,
+  done_checked TINYINT(1) NULL DEFAULT 0,
+  created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  created_by BIGINT(20) NULL,
+  modified_by BIGINT(20) NULL,
+  PRIMARY KEY (id)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_category_malls">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="category_id" type="bigint(20) unsigned NOT NULL COMMENT 'Links to wp_terms.term_id / product_cat'" />
+        <column name="mall_id" type="bigint(20) unsigned NOT NULL COMMENT 'Links to wp_mall_locations.id'" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_category_malls` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` bigint(20) unsigned NOT NULL COMMENT 'Links to wp_terms.term_id / product_cat',
+  `mall_id` bigint(20) unsigned NOT NULL COMMENT 'Links to wp_mall_locations.id',
+  `created_at` datetime DEFAULT current_timestamp(),
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_category_mall` (`category_id`,`mall_id`),
+  KEY `idx_category` (`category_id`),
+  KEY `idx_mall` (`mall_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_chat_blocklist">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="blocker_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="blocked_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="blocked_at" type="datetime NOT NULL DEFAULT current_timestamp()" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_chat_blocklist` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `blocker_id` bigint(20) unsigned NOT NULL,
+  `blocked_id` bigint(20) unsigned NOT NULL,
+  `blocked_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_chat_history">
+      <columns>
+        <column name="id" type="mediumint(9) NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="varchar(100) NOT NULL" />
+        <column name="message_type" type="enum('user','ai') NOT NULL" />
+        <column name="message" type="text NOT NULL" />
+        <column name="timestamp" type="datetime DEFAULT current_timestamp()" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_chat_history` (
+
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(100) NOT NULL,
+  `message_type` enum('user','ai') NOT NULL,
+  `message` text NOT NULL,
+  `timestamp` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `timestamp` (`timestamp`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_chat_message">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="thread_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="sender_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="message_text" type="text DEFAULT NULL" />
+        <column name="message_type" type="varchar(20) DEFAULT 'text'" />
+        <column name="attachment_url" type="text DEFAULT NULL" />
+        <column name="sent_at" type="datetime NOT NULL DEFAULT current_timestamp()" />
+        <column name="is_read" type="tinyint(1) DEFAULT 0" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_chat_message` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `thread_id` bigint(20) unsigned NOT NULL,
+  `sender_id` bigint(20) unsigned NOT NULL,
+  `message_text` text DEFAULT NULL,
+  `message_type` varchar(20) DEFAULT 'text',
+  `attachment_url` text DEFAULT NULL,
+  `sent_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `is_read` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `thread_id` (`thread_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_chat_thread">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="user_from" type="bigint(20) unsigned NOT NULL" />
+        <column name="user_to" type="bigint(20) unsigned NOT NULL" />
+        <column name="created_at" type="datetime NOT NULL DEFAULT current_timestamp()" />
+        <column name="last_updated_at" type="datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()" />
+        <column name="is_muted" type="tinyint(1) DEFAULT 0" />
+        <column name="status" type="varchar(20) DEFAULT 'active'" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_chat_thread` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_from` bigint(20) unsigned NOT NULL,
+  `user_to` bigint(20) unsigned NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `last_updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `is_muted` tinyint(1) DEFAULT 0,
+  `status` varchar(20) DEFAULT 'active',
+  PRIMARY KEY (`id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_cities">
+      <columns>
+        <column name="id" type="bigint(20) UNSIGNED NOT NULL" />
+        <column name="city_name" type="varchar(100) NOT NULL" />
+        <column name="latitude" type="decimal(10,7) DEFAULT NULL" />
+        <column name="longitude" type="decimal(10,7) DEFAULT NULL" />
+        <column name="status" type="tinyint(1) DEFAULT 1" />
+        <column name="created_at" type="timestamp NULL DEFAULT current_timestamp()" />
+        <column name="modified_by" type="bigint(20) UNSIGNED DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="position" type="float DEFAULT 0" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_cities` (
+
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `city_name` varchar(100) NOT NULL,
+  `latitude` decimal(10,7) DEFAULT NULL,
+  `longitude` decimal(10,7) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `modified_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `position` float DEFAULT 0,
+  PRIMARY KEY (`id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_city">
+      <columns>
+        <column name="id" type="BIGINT(20) NOT NULL AUTO_INCREMENT" />
+        <column name="position" type="FLOAT NOT NULL DEFAULT 0" />
+        <column name="country" type="VARCHAR(100) NOT NULL" />
+        <column name="county" type="VARCHAR(100) NULL DEFAULT NULL" />
+        <column name="city_name" type="VARCHAR(255) NOT NULL" />
+        <column name="population" type="BIGINT(20) NULL DEFAULT 0" />
+        <column name="date_created" type="DATETIME NULL DEFAULT CURRENT_TIMESTAMP" />
+        <column name="date_updated" type="DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" />
+        <column name="user_created" type="VARCHAR(100) NULL DEFAULT (CURRENT_USER())" />
+        <column name="user_updated" type="VARCHAR(100) NULL DEFAULT (CURRENT_USER())" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_city` (
+  id BIGINT(20) NOT NULL AUTO_INCREMENT,
+  position FLOAT NOT NULL DEFAULT 0,
+  country VARCHAR(100) NOT NULL,
+  county VARCHAR(100) NULL DEFAULT NULL,
+  city_name VARCHAR(255) NOT NULL,
+  population BIGINT(20) NULL DEFAULT 0,
+  date_created DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  date_updated DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  user_created VARCHAR(100) NULL DEFAULT (CURRENT_USER()),
+  user_updated VARCHAR(100) NULL DEFAULT (CURRENT_USER()),
+  PRIMARY KEY (id)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_device_tokens">
+      <columns>
+        <column name="id" type="BIGINT UNSIGNED NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="BIGINT UNSIGNED NOT NULL" />
+        <column name="device_token" type="VARCHAR(255) NOT NULL" />
+        <column name="platform" type="VARCHAR(32) NULL" />
+        <column name="device_info" type="VARCHAR(255) NULL" />
+        <column name="created_at" type="DATETIME DEFAULT CURRENT_TIMESTAMP" />
+        <column name="created_by" type="BIGINT NULL" />
+        <column name="modified_at" type="DATETIME NULL ON UPDATE CURRENT_TIMESTAMP" />
+        <column name="modified_by" type="BIGINT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_device_tokens` (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id BIGINT UNSIGNED NOT NULL,
+  device_token VARCHAR(255) NOT NULL,
+  platform VARCHAR(32) NULL,
+  device_info VARCHAR(255) NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  created_by BIGINT NULL,
+  modified_at DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
+  modified_by BIGINT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY uk_device_token (device_token),
+  KEY idx_user_id (user_id)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_documents">
+      <columns>
+        <column name="ID" type="BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT" />
+        <column name="module" type="VARCHAR(50) NOT NULL" />
+        <column name="submodule" type="VARCHAR(50) NOT NULL" />
+        <column name="reference_id" type="BIGINT(20) DEFAULT NULL" />
+        <column name="user_id" type="BIGINT(20) NOT NULL" />
+        <column name="server_path" type="TEXT NOT NULL" />
+        <column name="file_name" type="VARCHAR(255) NOT NULL" />
+        <column name="file_type" type="VARCHAR(100) DEFAULT NULL" />
+        <column name="file_size" type="INT(11) DEFAULT NULL" />
+        <column name="created_at" type="DATETIME DEFAULT NULL" />
+        <column name="created_user" type="BIGINT(20) DEFAULT NULL" />
+        <column name="modified_at" type="DATETIME DEFAULT NULL" />
+        <column name="modified_user" type="BIGINT(20) DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_documents` (
+  ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  module VARCHAR(50) NOT NULL,
+  submodule VARCHAR(50) NOT NULL,
+  reference_id BIGINT(20) DEFAULT NULL,
+  user_id BIGINT(20) NOT NULL,
+  server_path TEXT NOT NULL,
+  file_name VARCHAR(255) NOT NULL,
+  file_type VARCHAR(100) DEFAULT NULL,
+  file_size INT(11) DEFAULT NULL,
+  created_at DATETIME DEFAULT NULL,
+  created_user BIGINT(20) DEFAULT NULL,
+  modified_at DATETIME DEFAULT NULL,
+  modified_user BIGINT(20) DEFAULT NULL,
+  PRIMARY KEY (ID),
+  KEY idx_user_created (user_id, created_at),
+  KEY idx_module_ref (module, submodule, reference_id),
+  KEY idx_file_type (file_type),
+  KEY idx_created_at (created_at),
+  FULLTEXT KEY ft_file_name (file_name)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_forum_post">
+      <columns>
+        <column name="ID" type="BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT" />
+        <column name="oras" type="VARCHAR(100) DEFAULT NULL" />
+        <column name="domeniu" type="VARCHAR(100) DEFAULT NULL" />
+        <column name="post_author" type="BIGINT(20) DEFAULT NULL" />
+        <column name="post_title" type="TEXT DEFAULT NULL" />
+        <column name="post_status" type="VARCHAR(20) DEFAULT 'publish'" />
+        <column name="post_content" type="LONGTEXT DEFAULT NULL" />
+        <column name="post_date" type="DATETIME DEFAULT CURRENT_TIMESTAMP()" />
+        <column name="mesaj" type="VARCHAR(1000) DEFAULT NULL" />
+        <column name="comment_count" type="BIGINT(20) DEFAULT 0" />
+        <column name="nr_to_read" type="INT NOT NULL DEFAULT 0" />
+        <column name="last_answer_datetime" type="DATETIME DEFAULT NULL" />
+        <column name="post_image" type="LONGTEXT DEFAULT NULL" />
+        <column name="post_mime_type" type="VARCHAR(100) DEFAULT NULL" />
+        <column name="post_modified_date" type="DATETIME DEFAULT NULL" />
+        <column name="post_modified_user" type="TEXT DEFAULT NULL" />
+        <column name="chat_user_id" type="BIGINT(20) DEFAULT NULL" />
+        <column name="order_id" type="BIGINT(20) DEFAULT NULL" />
+        <column name="product_id" type="BIGINT(20) DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_forum_post` (
+  ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  oras VARCHAR(100) DEFAULT NULL,
+  domeniu VARCHAR(100) DEFAULT NULL,
+  post_author BIGINT(20) DEFAULT NULL,
+  post_title TEXT DEFAULT NULL,
+  post_status VARCHAR(20) DEFAULT 'publish',
+  post_content LONGTEXT DEFAULT NULL,
+  post_date DATETIME DEFAULT CURRENT_TIMESTAMP(),
+  mesaj VARCHAR(1000) DEFAULT NULL,
+  comment_count BIGINT(20) DEFAULT 0,
+  nr_to_read INT NOT NULL DEFAULT 0,
+  last_answer_datetime DATETIME DEFAULT NULL,
+  post_image LONGTEXT DEFAULT NULL,
+  post_mime_type VARCHAR(100) DEFAULT NULL,
+  post_modified_date DATETIME DEFAULT NULL,
+  post_modified_user TEXT DEFAULT NULL,
+  chat_user_id BIGINT(20) DEFAULT NULL,
+  order_id BIGINT(20) DEFAULT NULL,
+  product_id BIGINT(20) DEFAULT NULL,
+  PRIMARY KEY (ID),
+  INDEX idx_post_status (post_status),
+  INDEX idx_status_lastanswer (post_status, last_answer_datetime),
+  INDEX idx_thread_users (post_author, chat_user_id),
+  INDEX idx_last_answer_datetime (last_answer_datetime)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_forum_post_answer">
+      <columns>
+        <column name="ID" type="BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT" />
+        <column name="PARENT_ID_vogo_forum_post" type="BIGINT(20) DEFAULT NULL" />
+        <column name="post_author" type="BIGINT(20) DEFAULT NULL" />
+        <column name="to_user_id" type="BIGINT(20) UNSIGNED DEFAULT NULL" />
+        <column name="post_answer" type="TEXT DEFAULT NULL" />
+        <column name="post_status" type="VARCHAR(20) DEFAULT 'publish'" />
+        <column name="message_type" type="ENUM('CHAT','VIDEO','VOICE','FILE','SYSTEM') NOT NULL DEFAULT 'CHAT'" />
+        <column name="direction" type="ENUM('incoming','outgoing') DEFAULT NULL" />
+        <column name="call_status" type="ENUM('RINGING','ONGOING','ENDED','CANCELED','DECLINED','MISSED') DEFAULT NULL" />
+        <column name="missed_call" type="TINYINT(1) NOT NULL DEFAULT 0" />
+        <column name="call_id" type="BIGINT(20) UNSIGNED DEFAULT NULL" />
+        <column name="channel_name" type="VARCHAR(128) DEFAULT NULL" />
+        <column name="video_audio_duration" type="INT(10) UNSIGNED DEFAULT NULL" />
+        <column name="call_duration_seconds" type="INT(10) UNSIGNED DEFAULT NULL" />
+        <column name="is_video" type="TINYINT(1) NOT NULL DEFAULT 0" />
+        <column name="is_audio" type="TINYINT(1) NOT NULL DEFAULT 0" />
+        <column name="post_content" type="LONGTEXT DEFAULT NULL" />
+        <column name="post_date" type="DATETIME DEFAULT CURRENT_TIMESTAMP()" />
+        <column name="mesaj" type="VARCHAR(1000) DEFAULT NULL" />
+        <column name="comment_count" type="BIGINT(20) DEFAULT 0" />
+        <column name="created_at" type="DATETIME NULL" />
+        <column name="created_user" type="BIGINT(20) NULL" />
+        <column name="modified_at" type="DATETIME NULL" />
+        <column name="modified_user" type="BIGINT(20) NULL" />
+        <column name="edited_at" type="DATETIME NULL" />
+        <column name="edited_by" type="BIGINT(20) UNSIGNED DEFAULT NULL" />
+        <column name="deleted_at" type="DATETIME NULL" />
+        <column name="deleted_by" type="BIGINT(20) UNSIGNED DEFAULT NULL" />
+        <column name="post_image" type="LONGTEXT DEFAULT NULL" />
+        <column name="filename" type="VARCHAR(255) DEFAULT NULL" />
+        <column name="file_mime" type="VARCHAR(100) DEFAULT NULL" />
+        <column name="file_size" type="BIGINT(20) UNSIGNED DEFAULT NULL" />
+        <column name="file_url" type="TEXT DEFAULT NULL" />
+        <column name="message_status" type="ENUM('SENT','DELIVERED','READ','FAILED','DELETED') NOT NULL DEFAULT 'SENT'" />
+        <column name="delivered_at" type="DATETIME DEFAULT NULL" />
+        <column name="read_at" type="DATETIME DEFAULT NULL" />
+        <column name="client_message_id" type="VARCHAR(64) DEFAULT NULL" />
+        <column name="post_mime_type" type="VARCHAR(100) DEFAULT NULL" />
+        <column name="post_modified_date" type="DATETIME DEFAULT NULL" />
+        <column name="post_modified_user" type="TEXT DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_forum_post_answer` (
+  ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  PARENT_ID_vogo_forum_post BIGINT(20) DEFAULT NULL,
+  post_author BIGINT(20) DEFAULT NULL,
+  to_user_id BIGINT(20) UNSIGNED DEFAULT NULL,
+  post_answer TEXT DEFAULT NULL,
+  post_status VARCHAR(20) DEFAULT 'publish',
+  message_type ENUM('CHAT','VIDEO','VOICE','FILE','SYSTEM') NOT NULL DEFAULT 'CHAT',
+  direction ENUM('incoming','outgoing') DEFAULT NULL,
+  call_status ENUM('RINGING','ONGOING','ENDED','CANCELED','DECLINED','MISSED') DEFAULT NULL,
+  missed_call TINYINT(1) NOT NULL DEFAULT 0,
+  call_id BIGINT(20) UNSIGNED DEFAULT NULL,
+  channel_name VARCHAR(128) DEFAULT NULL,
+  video_audio_duration INT(10) UNSIGNED DEFAULT NULL,
+  call_duration_seconds INT(10) UNSIGNED DEFAULT NULL,
+  is_video TINYINT(1) NOT NULL DEFAULT 0,
+  is_audio TINYINT(1) NOT NULL DEFAULT 0,
+  post_content LONGTEXT DEFAULT NULL,
+  post_date DATETIME DEFAULT CURRENT_TIMESTAMP(),
+  mesaj VARCHAR(1000) DEFAULT NULL,
+  comment_count BIGINT(20) DEFAULT 0,
+  created_at DATETIME NULL,
+  created_user BIGINT(20) NULL,
+  modified_at DATETIME NULL,
+  modified_user BIGINT(20) NULL,
+  edited_at DATETIME NULL,
+  edited_by BIGINT(20) UNSIGNED DEFAULT NULL,
+  deleted_at DATETIME NULL,
+  deleted_by BIGINT(20) UNSIGNED DEFAULT NULL,
+  post_image LONGTEXT DEFAULT NULL,
+  filename VARCHAR(255) DEFAULT NULL,
+  file_mime VARCHAR(100) DEFAULT NULL,
+  file_size BIGINT(20) UNSIGNED DEFAULT NULL,
+  file_url TEXT DEFAULT NULL,
+  message_status ENUM('SENT','DELIVERED','READ','FAILED','DELETED') NOT NULL DEFAULT 'SENT',
+  delivered_at DATETIME DEFAULT NULL,
+  read_at DATETIME DEFAULT NULL,
+  client_message_id VARCHAR(64) DEFAULT NULL,
+  post_mime_type VARCHAR(100) DEFAULT NULL,
+  post_modified_date DATETIME DEFAULT NULL,
+  post_modified_user TEXT DEFAULT NULL,
+  PRIMARY KEY (ID),
+  INDEX idx_post_status (post_status),
+  INDEX idx_parent_date (PARENT_ID_vogo_forum_post, post_date),
+  INDEX idx_message_type (message_type),
+  INDEX idx_to_user_id (to_user_id),
+  INDEX idx_call_id (call_id),
+  INDEX idx_client_msg_id (client_message_id)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_forum_post_answer_reply">
+      <columns>
+        <column name="ID" type="BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT" />
+        <column name="PARENT_ID_vogo_forum_post" type="BIGINT(20) DEFAULT NULL" />
+        <column name="PARENT_ID_vogo_forum_post_answer" type="BIGINT(20) DEFAULT NULL" />
+        <column name="post_author" type="BIGINT(20) DEFAULT NULL" />
+        <column name="post_answer" type="TEXT DEFAULT NULL" />
+        <column name="post_status" type="VARCHAR(20) DEFAULT 'publish'" />
+        <column name="post_content" type="LONGTEXT DEFAULT NULL" />
+        <column name="post_date" type="DATETIME DEFAULT CURRENT_TIMESTAMP()" />
+        <column name="mesaj" type="VARCHAR(1000) DEFAULT NULL" />
+        <column name="comment_count" type="BIGINT(20) DEFAULT 0" />
+        <column name="post_image" type="LONGTEXT DEFAULT NULL" />
+        <column name="post_mime_type" type="VARCHAR(100) DEFAULT NULL" />
+        <column name="post_modified_date" type="DATETIME DEFAULT NULL" />
+        <column name="post_modified_user" type="TEXT DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_forum_post_answer_reply` (
+  ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  PARENT_ID_vogo_forum_post BIGINT(20) DEFAULT NULL,
+  PARENT_ID_vogo_forum_post_answer BIGINT(20) DEFAULT NULL,
+  post_author BIGINT(20) DEFAULT NULL,
+  post_answer TEXT DEFAULT NULL,
+  post_status VARCHAR(20) DEFAULT 'publish',
+  post_content LONGTEXT DEFAULT NULL,
+  post_date DATETIME DEFAULT CURRENT_TIMESTAMP(),
+  mesaj VARCHAR(1000) DEFAULT NULL,
+  comment_count BIGINT(20) DEFAULT 0,
+  post_image LONGTEXT DEFAULT NULL,
+  post_mime_type VARCHAR(100) DEFAULT NULL,
+  post_modified_date DATETIME DEFAULT NULL,
+  post_modified_user TEXT DEFAULT NULL,
+  PRIMARY KEY (ID),
+  INDEX idx_post_status (post_status)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_forum_post_no_to_read">
+      <columns>
+        <column name="id" type="BIGINT UNSIGNED NOT NULL AUTO_INCREMENT" />
+        <column name="post_id" type="BIGINT UNSIGNED NOT NULL" />
+        <column name="user_id" type="BIGINT UNSIGNED NOT NULL" />
+        <column name="nr_to_read" type="INT(10) UNSIGNED NOT NULL DEFAULT 0" />
+        <column name="created_at" type="DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP" />
+        <column name="updated_at" type="DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" />
+        <column name="created_by" type="BIGINT UNSIGNED DEFAULT NULL" />
+        <column name="updated_by" type="BIGINT UNSIGNED DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_forum_post_no_to_read` (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  post_id BIGINT UNSIGNED NOT NULL,
+  user_id BIGINT UNSIGNED NOT NULL,
+  nr_to_read INT(10) UNSIGNED NOT NULL DEFAULT 0,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  created_by BIGINT UNSIGNED DEFAULT NULL,
+  updated_by BIGINT UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY uniq_post_user (post_id, user_id),
+  UNIQUE KEY uq_post_user (post_id, user_id),
+  KEY idx_post (post_id),
+  KEY idx_user (user_id)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_mall_locations">
+      <columns>
+        <column name="id" type="bigint(20) UNSIGNED NOT NULL" />
+        <column name="mall_name" type="varchar(255) NOT NULL" />
+        <column name="city" type="varchar(255) NOT NULL" />
+        <column name="location_code" type="varchar(50) NOT NULL" />
+        <column name="status" type="enum('active','inactive') NOT NULL DEFAULT 'active'" />
+        <column name="street_address" type="varchar(255) NOT NULL" />
+        <column name="position" type="float DEFAULT 0" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_mall_locations` (
+
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `mall_name` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `location_code` varchar(50) NOT NULL,
+  `status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `street_address` varchar(255) NOT NULL,
+  `position` float DEFAULT 0,
+  PRIMARY KEY (`id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_order_transporter_pos">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="order_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="client_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="transporter_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="provider_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="latitude" type="decimal(10,7) NOT NULL" />
+        <column name="longitude" type="decimal(10,7) NOT NULL" />
+        <column name="status" type="varchar(32) NOT NULL" />
+        <column name="created_at" type="datetime NOT NULL DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) unsigned NOT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_order_transporter_pos` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) unsigned NOT NULL,
+  `client_id` bigint(20) unsigned NOT NULL,
+  `transporter_id` bigint(20) unsigned NOT NULL,
+  `provider_id` bigint(20) unsigned NOT NULL,
+  `latitude` decimal(10,7) NOT NULL,
+  `longitude` decimal(10,7) NOT NULL,
+  `status` varchar(32) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_by` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `k_order` (`order_id`),
+  KEY `k_transporter` (`transporter_id`),
+  KEY `k_order_time` (`order_id`,`created_at`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_order_transporter_rejects">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="order_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="transporter_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="reason" type="text DEFAULT NULL" />
+        <column name="created_at" type="datetime NOT NULL DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) unsigned NOT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_order_transporter_rejects` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) unsigned NOT NULL,
+  `transporter_id` bigint(20) unsigned NOT NULL,
+  `reason` text DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_by` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_order_transporter` (`order_id`,`transporter_id`),
+  KEY `k_order` (`order_id`),
+  KEY `k_transporter` (`transporter_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_order_vendor">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="order_id" type="bigint(20) unsigned NOT NULL COMMENT 'FK -&gt; wp_posts.ID (shop_order)'" />
+        <column name="child_order_id" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="vendor_id" type="int(11) NOT NULL COMMENT 'FK -&gt; wp_provider_feeds.id'" />
+        <column name="items_count" type="int(11) NOT NULL DEFAULT 0" />
+        <column name="items_subtotal" type="decimal(18,2) NOT NULL DEFAULT 0.00" />
+        <column name="items_total" type="decimal(18,2) NOT NULL DEFAULT 0.00" />
+        <column name="tax_total" type="decimal(18,2) NOT NULL DEFAULT 0.00" />
+        <column name="shipping_total" type="decimal(18,2) NOT NULL DEFAULT 0.00" />
+        <column name="status" type="enum('active','hidden') NOT NULL DEFAULT 'active'" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) unsigned DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_order_vendor` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) unsigned NOT NULL COMMENT 'FK -> wp_posts.ID (shop_order)',
+  `child_order_id` bigint(20) unsigned DEFAULT NULL,
+  `vendor_id` int(11) NOT NULL COMMENT 'FK -> wp_provider_feeds.id',
+  `items_count` int(11) NOT NULL DEFAULT 0,
+  `items_subtotal` decimal(18,2) NOT NULL DEFAULT 0.00,
+  `items_total` decimal(18,2) NOT NULL DEFAULT 0.00,
+  `tax_total` decimal(18,2) NOT NULL DEFAULT 0.00,
+  `shipping_total` decimal(18,2) NOT NULL DEFAULT 0.00,
+  `status` enum('active','hidden') NOT NULL DEFAULT 'active',
+  `created_at` datetime DEFAULT current_timestamp(),
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_order_vendor` (`order_id`,`vendor_id`),
+  KEY `idx_vendor` (`vendor_id`),
+  KEY `idx_order` (`order_id`),
+  KEY `idx_child` (`child_order_id`),
+  CONSTRAINT `fk_ov_order` FOREIGN KEY (`order_id`) REFERENCES `wp_posts` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_orders">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="parent_order_id" type="bigint(20) unsigned NOT NULL DEFAULT 0" />
+        <column name="client_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="provider_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="picking_point_id" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="pick_latitude" type="decimal(10,7) DEFAULT NULL" />
+        <column name="pick_longitude" type="decimal(10,7) DEFAULT NULL" />
+        <column name="notes_customer" type="text DEFAULT NULL" />
+        <column name="notes_provider" type="text DEFAULT NULL" />
+        <column name="notes_transporter" type="text DEFAULT NULL" />
+        <column name="city_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="total_amount" type="decimal(12,2) NOT NULL DEFAULT 0.00" />
+        <column name="currency" type="char(3) NOT NULL DEFAULT 'RON'" />
+        <column name="payment_method_title" type="varchar(255) DEFAULT NULL" />
+        <column name="status" type="varchar(32) NOT NULL" />
+        <column name="delivery_type" type="enum('DIRECT','POSTAL','COURIER','ELECTRONIC','TAXI') NOT NULL DEFAULT 'DIRECT'" />
+        <column name="created_at" type="datetime NOT NULL" />
+        <column name="end_lat" type="decimal(10,7) DEFAULT NULL" />
+        <column name="end_long" type="decimal(10,7) DEFAULT NULL" />
+        <column name="address_pick" type="varchar(512) DEFAULT NULL" />
+        <column name="address_end" type="varchar(512) DEFAULT NULL" />
+        <column name="distance_km" type="decimal(10,3) DEFAULT NULL" />
+        <column name="calculated_fields" type="tinyint(1) NOT NULL DEFAULT 0" />
+        <column name="created_by" type="bigint(20) DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) DEFAULT NULL" />
+        <column name="order_short_description" type="text DEFAULT NULL COMMENT 'Short description of the order'" />
+        <column name="relevant_image" type="varchar(512) DEFAULT NULL COMMENT 'Representative image URL/path'" />
+        <column name="provider_name" type="varchar(255) DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_orders` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_order_id` bigint(20) unsigned NOT NULL DEFAULT 0,
+  `client_id` bigint(20) unsigned NOT NULL,
+  `provider_id` bigint(20) unsigned NOT NULL,
+  `picking_point_id` bigint(20) unsigned DEFAULT NULL,
+  `pick_latitude` decimal(10,7) DEFAULT NULL,
+  `pick_longitude` decimal(10,7) DEFAULT NULL,
+  `notes_customer` text DEFAULT NULL,
+  `notes_provider` text DEFAULT NULL,
+  `notes_transporter` text DEFAULT NULL,
+  `city_id` bigint(20) unsigned NOT NULL,
+  `total_amount` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `currency` char(3) NOT NULL DEFAULT 'RON',
+  `payment_method_title` varchar(255) DEFAULT NULL,
+  `status` varchar(32) NOT NULL,
+  `delivery_type` enum('DIRECT','POSTAL','COURIER','ELECTRONIC','TAXI') NOT NULL DEFAULT 'DIRECT',
+  `created_at` datetime NOT NULL,
+  `end_lat` decimal(10,7) DEFAULT NULL,
+  `end_long` decimal(10,7) DEFAULT NULL,
+  `address_pick` varchar(512) DEFAULT NULL,
+  `address_end` varchar(512) DEFAULT NULL,
+  `distance_km` decimal(10,3) DEFAULT NULL,
+  `calculated_fields` tinyint(1) NOT NULL DEFAULT 0,
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) DEFAULT NULL,
+  `order_short_description` text DEFAULT NULL COMMENT 'Short description of the order',
+  `relevant_image` varchar(512) DEFAULT NULL COMMENT 'Representative image URL/path',
+  `provider_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `k_city_status` (`city_id`,`status`),
+  KEY `k_provider` (`provider_id`),
+  KEY `k_picking_point` (`picking_point_id`),
+  KEY `idx_provider_mod` (`provider_id`,`modified_at`),
+  KEY `idx_provider_created` (`provider_id`,`created_at`),
+  KEY `idx_client_created` (`client_id`,`created_at`),
+  KEY `idx_parent_order_id` (`parent_order_id`),
+  KEY `idx_vendor_id` (`provider_id`),
+  KEY `idx_currency` (`currency`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_orders_delivery">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="order_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="current_status" type="varchar(32) NOT NULL DEFAULT 'NEW'" />
+        <column name="cancel_reason" type="varchar(512) DEFAULT NULL" />
+        <column name="accepted_date" type="datetime DEFAULT NULL" />
+        <column name="transporter_id" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="transport_end_date" type="datetime DEFAULT NULL" />
+        <column name="last_lat" type="decimal(10,7) DEFAULT NULL" />
+        <column name="last_lng" type="decimal(10,7) DEFAULT NULL" />
+        <column name="last_update_at" type="datetime DEFAULT NULL" />
+        <column name="notes" type="varchar(255) DEFAULT NULL" />
+        <column name="created_at" type="datetime NOT NULL DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) unsigned NOT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) unsigned DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_orders_delivery` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) unsigned NOT NULL,
+  `current_status` varchar(32) NOT NULL DEFAULT 'NEW',
+  `cancel_reason` varchar(512) DEFAULT NULL,
+  `accepted_date` datetime DEFAULT NULL,
+  `transporter_id` bigint(20) unsigned DEFAULT NULL,
+  `transport_end_date` datetime DEFAULT NULL,
+  `last_lat` decimal(10,7) DEFAULT NULL,
+  `last_lng` decimal(10,7) DEFAULT NULL,
+  `last_update_at` datetime DEFAULT NULL,
+  `notes` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_by` bigint(20) unsigned NOT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `u_order` (`order_id`),
+  KEY `k_transporter` (`transporter_id`),
+  KEY `k_accepted_date` (`accepted_date`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_orders_lines">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="order_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="order_item_id" type="bigint(20) unsigned NOT NULL DEFAULT 0" />
+        <column name="product_name" type="text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL" />
+        <column name="product_id" type="longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL" />
+        <column name="variation_id" type="longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL" />
+        <column name="qty" type="decimal(12,3) DEFAULT NULL" />
+        <column name="line_subtotal" type="decimal(12,2) DEFAULT NULL" />
+        <column name="line_subtotal_tax" type="decimal(12,2) DEFAULT NULL" />
+        <column name="line_total" type="decimal(12,2) DEFAULT NULL" />
+        <column name="line_tax" type="decimal(12,2) DEFAULT NULL" />
+        <column name="tax_rate" type="decimal(5,2) DEFAULT NULL" />
+        <column name="discount_total" type="decimal(12,2) DEFAULT 0.00" />
+        <column name="discount_percent" type="decimal(5,2) DEFAULT NULL" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) DEFAULT NULL" />
+        <column name="vendor_id" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="vendor_name" type="varchar(255) DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_orders_lines` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) unsigned NOT NULL,
+  `order_item_id` bigint(20) unsigned NOT NULL DEFAULT 0,
+  `product_name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `product_id` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `variation_id` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `qty` decimal(12,3) DEFAULT NULL,
+  `line_subtotal` decimal(12,2) DEFAULT NULL,
+  `line_subtotal_tax` decimal(12,2) DEFAULT NULL,
+  `line_total` decimal(12,2) DEFAULT NULL,
+  `line_tax` decimal(12,2) DEFAULT NULL,
+  `tax_rate` decimal(5,2) DEFAULT NULL,
+  `discount_total` decimal(12,2) DEFAULT 0.00,
+  `discount_percent` decimal(5,2) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) DEFAULT NULL,
+  `vendor_id` bigint(20) unsigned DEFAULT NULL,
+  `vendor_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_order_id` (`order_id`),
+  KEY `idx_order_product` (`order_id`,`product_id`(191)),
+  KEY `idx_vendor_id` (`vendor_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_otps">
+      <columns>
+        <column name="phone" type="VARCHAR(20) NOT NULL" />
+        <column name="otp" type="INT NOT NULL" />
+        <column name="created_at" type="DATETIME NOT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_otps` (
+  phone VARCHAR(20) NOT NULL,
+  otp INT NOT NULL,
+  created_at DATETIME NOT NULL,
+  PRIMARY KEY (phone)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_product_action">
+      <columns>
+        <column name="ID" type="int(10) NOT NULL AUTO_INCREMENT" />
+        <column name="ID_PRODUCT" type="int(10) NOT NULL COMMENT 'FK PRODUCT-ID'" />
+        <column name="ACTION_TYPE" type="varchar(100) NOT NULL COMMENT 'WHATSAPP/LINK/AI'" />
+        <column name="ACTION_LABEL" type="varchar(500) NOT NULL" />
+        <column name="ACTION_DETAILS" type="varchar(1000) NOT NULL" />
+        <column name="ICON_CODE" type="varchar(500) NOT NULL COMMENT 'font-awsome icon code'" />
+        <column name="WHATSAPP_NUMBER" type="text NOT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_product_action` (
+
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `ID_PRODUCT` int(10) NOT NULL COMMENT 'FK PRODUCT-ID',
+  `ACTION_TYPE` varchar(100) NOT NULL COMMENT 'WHATSAPP/LINK/AI',
+  `ACTION_LABEL` varchar(500) NOT NULL,
+  `ACTION_DETAILS` varchar(1000) NOT NULL,
+  `ICON_CODE` varchar(500) NOT NULL COMMENT 'font-awsome icon code',
+  `WHATSAPP_NUMBER` text NOT NULL,
+  PRIMARY KEY (`ID`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_product_category_cities">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="category_id" type="bigint(20) unsigned NOT NULL COMMENT 'Links to wp_terms.term_id / product_cat'" />
+        <column name="city_id" type="bigint(20) unsigned NOT NULL COMMENT 'Links to wp_cities.id'" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_product_category_cities` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` bigint(20) unsigned NOT NULL COMMENT 'Links to wp_terms.term_id / product_cat',
+  `city_id` bigint(20) unsigned NOT NULL COMMENT 'Links to wp_cities.id',
+  `created_at` datetime DEFAULT current_timestamp(),
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_category_city` (`category_id`,`city_id`),
+  KEY `idx_category` (`category_id`),
+  KEY `idx_city` (`city_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_product_cities">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="product_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="city_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="created_by" type="bigint(20) unsigned DEFAULT 0" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="modified_by" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_product_cities` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` bigint(20) unsigned NOT NULL,
+  `city_id` bigint(20) unsigned NOT NULL,
+  `created_by` bigint(20) unsigned DEFAULT 0,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `modified_by` bigint(20) unsigned DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_product_city` (`product_id`,`city_id`),
+  KEY `idx_product_id` (`product_id`),
+  KEY `idx_city_id` (`city_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_product_malls">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="product_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="mall_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) unsigned DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_product_malls` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` bigint(20) unsigned NOT NULL,
+  `mall_id` bigint(20) unsigned NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_product_mall` (`product_id`,`mall_id`),
+  KEY `idx_product_id` (`product_id`),
+  KEY `idx_mall_id` (`mall_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_product_meta_action">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="product_id" type="bigint(20) unsigned NOT NULL COMMENT 'FK to wp_posts.ID (WooCommerce product)'" />
+        <column name="product_main_category_id" type="bigint(20) unsigned DEFAULT NULL COMMENT 'FK to wp_terms.term_id (main product_cat)'" />
+        <column name="camera_broadcast_url" type="varchar(500) DEFAULT NULL" />
+        <column name="zoom_live_call_link" type="varchar(500) DEFAULT NULL" />
+        <column name="whatsapp_contact_url" type="varchar(500) DEFAULT NULL" />
+        <column name="suggest_service_link" type="varchar(500) DEFAULT NULL" />
+        <column name="action_whatsapp_label" type="varchar(255) DEFAULT NULL" />
+        <column name="action_whatsapp_number" type="varchar(50) DEFAULT NULL" />
+        <column name="action_whatsapp_message" type="text DEFAULT NULL" />
+        <column name="action_url_label" type="varchar(255) DEFAULT NULL" />
+        <column name="action_url_link" type="varchar(500) DEFAULT NULL" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_product_meta_action` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` bigint(20) unsigned NOT NULL COMMENT 'FK to wp_posts.ID (WooCommerce product)',
+  `product_main_category_id` bigint(20) unsigned DEFAULT NULL COMMENT 'FK to wp_terms.term_id (main product_cat)',
+  `camera_broadcast_url` varchar(500) DEFAULT NULL,
+  `zoom_live_call_link` varchar(500) DEFAULT NULL,
+  `whatsapp_contact_url` varchar(500) DEFAULT NULL,
+  `suggest_service_link` varchar(500) DEFAULT NULL,
+  `action_whatsapp_label` varchar(255) DEFAULT NULL,
+  `action_whatsapp_number` varchar(50) DEFAULT NULL,
+  `action_whatsapp_message` text DEFAULT NULL,
+  `action_url_label` varchar(255) DEFAULT NULL,
+  `action_url_link` varchar(500) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_product` (`product_id`),
+  KEY `idx_product` (`product_id`),
+  KEY `idx_category` (`product_main_category_id`),
+  KEY `idx_product_main_category` (`product_main_category_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_product_recommendations">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="product_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="recommended_at" type="datetime NOT NULL DEFAULT current_timestamp()" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_product_recommendations` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `product_id` bigint(20) unsigned NOT NULL,
+  `recommended_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_product_unique` (`user_id`,`product_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_product_tbl">
+      <columns>
+        <column name="product_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="product_name" type="varchar(255) NOT NULL" />
+        <column name="product_slug" type="varchar(200) NOT NULL" />
+        <column name="short_description" type="mediumtext DEFAULT NULL" />
+        <column name="description" type="longtext DEFAULT NULL" />
+        <column name="status" type="enum('publish','draft','pending','private','trash') NOT NULL DEFAULT 'draft'" />
+        <column name="product_type" type="enum('simple','variable','grouped','external','unknown') NOT NULL DEFAULT 'unknown'" />
+        <column name="sku" type="varchar(100) DEFAULT NULL" />
+        <column name="regular_price" type="decimal(19,4) DEFAULT NULL" />
+        <column name="sale_price" type="decimal(19,4) DEFAULT NULL" />
+        <column name="price" type="decimal(19,4) DEFAULT NULL" />
+        <column name="max_price" type="decimal(19,4) DEFAULT NULL" />
+        <column name="manage_stock" type="tinyint(1) NOT NULL DEFAULT 0" />
+        <column name="stock_qty" type="decimal(19,4) DEFAULT NULL" />
+        <column name="stock_status" type="enum('instock','outofstock','onbackorder') NOT NULL DEFAULT 'instock'" />
+        <column name="categories" type="text DEFAULT NULL" />
+        <column name="tags" type="text DEFAULT NULL" />
+        <column name="thumbnail_id" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="image_url" type="varchar(1024) DEFAULT NULL" />
+        <column name="published_date" type="datetime DEFAULT NULL" />
+        <column name="position" type="int(11) DEFAULT NULL" />
+        <column name="visibility" type="varchar(32) DEFAULT 'public'" />
+        <column name="seo_title" type="text DEFAULT NULL" />
+        <column name="seo_description" type="longtext DEFAULT NULL" />
+        <column name="product_image_id" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="product_image_url" type="varchar(1024) DEFAULT NULL" />
+        <column name="brand" type="varchar(100) DEFAULT NULL" />
+        <column name="product_providers" type="varchar(255) DEFAULT NULL" />
+        <column name="provider_id" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="category_id" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="category_name" type="varchar(255) DEFAULT NULL" />
+        <column name="created_at" type="datetime NOT NULL DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) unsigned DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_product_tbl` (
+
+  `product_id` bigint(20) unsigned NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_slug` varchar(200) NOT NULL,
+  `short_description` mediumtext DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
+  `status` enum('publish','draft','pending','private','trash') NOT NULL DEFAULT 'draft',
+  `product_type` enum('simple','variable','grouped','external','unknown') NOT NULL DEFAULT 'unknown',
+  `sku` varchar(100) DEFAULT NULL,
+  `regular_price` decimal(19,4) DEFAULT NULL,
+  `sale_price` decimal(19,4) DEFAULT NULL,
+  `price` decimal(19,4) DEFAULT NULL,
+  `max_price` decimal(19,4) DEFAULT NULL,
+  `manage_stock` tinyint(1) NOT NULL DEFAULT 0,
+  `stock_qty` decimal(19,4) DEFAULT NULL,
+  `stock_status` enum('instock','outofstock','onbackorder') NOT NULL DEFAULT 'instock',
+  `categories` text DEFAULT NULL,
+  `tags` text DEFAULT NULL,
+  `thumbnail_id` bigint(20) unsigned DEFAULT NULL,
+  `image_url` varchar(1024) DEFAULT NULL,
+  `published_date` datetime DEFAULT NULL,
+  `position` int(11) DEFAULT NULL,
+  `visibility` varchar(32) DEFAULT 'public',
+  `seo_title` text DEFAULT NULL,
+  `seo_description` longtext DEFAULT NULL,
+  `product_image_id` bigint(20) unsigned DEFAULT NULL,
+  `product_image_url` varchar(1024) DEFAULT NULL,
+  `brand` varchar(100) DEFAULT NULL,
+  `product_providers` varchar(255) DEFAULT NULL,
+  `provider_id` bigint(20) unsigned DEFAULT NULL,
+  `category_id` bigint(20) unsigned DEFAULT NULL,
+  `category_name` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`product_id`),
+  UNIQUE KEY `uk_vogo_sku` (`sku`),
+  KEY `idx_vogo_slug` (`product_slug`),
+  KEY `idx_vogo_status` (`status`),
+  KEY `idx_vogo_type` (`product_type`),
+  KEY `idx_vogo_stock_status` (`stock_status`),
+  KEY `idx_vogo_price` (`price`),
+  KEY `idx_vogo_position` (`position`),
+  KEY `idx_vogo_provider_id` (`provider_id`),
+  KEY `idx_vogo_category_id` (`category_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_product_vendor">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="product_id" type="bigint(20) unsigned NOT NULL COMMENT 'FK -&gt; wp_posts.ID (post_type=product)'" />
+        <column name="vendor_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="status" type="enum('active','hidden') NOT NULL DEFAULT 'active'" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) unsigned DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_product_vendor` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` bigint(20) unsigned NOT NULL COMMENT 'FK -> wp_posts.ID (post_type=product)',
+  `vendor_id` bigint(20) unsigned NOT NULL,
+  `status` enum('active','hidden') NOT NULL DEFAULT 'active',
+  `created_at` datetime DEFAULT current_timestamp(),
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_product` (`product_id`),
+  UNIQUE KEY `uq_wp_vogo_product_vendor_product` (`product_id`),
+  UNIQUE KEY `uq_vogo_product_vendor` (`product_id`,`vendor_id`),
+  UNIQUE KEY `uq_product` (`product_id`),
+  KEY `idx_vendor` (`vendor_id`),
+  KEY `idx_status` (`status`),
+  CONSTRAINT `fk_vogo_product_vendor_product` FOREIGN KEY (`product_id`) REFERENCES `wp_posts` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_vogo_product_vendor_vendor_vogo` FOREIGN KEY (`vendor_id`) REFERENCES `wp_vogo_providers` (`id`) ON UPDATE CASCADE
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_providers">
+      <columns>
+        <column name="id" type="BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT" />
+        <column name="provider_name" type="VARCHAR(255) NOT NULL" />
+        <column name="provider_slug" type="VARCHAR(191) NOT NULL" />
+        <column name="term_id" type="BIGINT(20) UNSIGNED DEFAULT NULL" />
+        <column name="user_id" type="BIGINT(20) UNSIGNED DEFAULT NULL" />
+        <column name="accepting_orders" type="TINYINT(1) NOT NULL DEFAULT 0" />
+        <column name="status" type="ENUM('active','hidden') NOT NULL DEFAULT 'active'" />
+        <column name="active" type="TINYINT(1) NOT NULL DEFAULT 1" />
+        <column name="legacy_pf_id" type="INT(11) DEFAULT NULL" />
+        <column name="created_at" type="DATETIME DEFAULT CURRENT_TIMESTAMP" />
+        <column name="created_by" type="BIGINT(20) UNSIGNED DEFAULT NULL" />
+        <column name="modified_at" type="DATETIME NULL ON UPDATE CURRENT_TIMESTAMP" />
+        <column name="modified_by" type="BIGINT(20) UNSIGNED DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_providers` (
+  id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  provider_name VARCHAR(255) NOT NULL,
+  provider_slug VARCHAR(191) NOT NULL,
+  term_id BIGINT(20) UNSIGNED DEFAULT NULL,
+  user_id BIGINT(20) UNSIGNED DEFAULT NULL,
+  accepting_orders TINYINT(1) NOT NULL DEFAULT 0,
+  status ENUM('active','hidden') NOT NULL DEFAULT 'active',
+  active TINYINT(1) NOT NULL DEFAULT 1,
+  legacy_pf_id INT(11) DEFAULT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  created_by BIGINT(20) UNSIGNED DEFAULT NULL,
+  modified_at DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
+  modified_by BIGINT(20) UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY uniq_slug (provider_slug),
+  KEY idx_term (term_id),
+  KEY idx_user (user_id),
+  KEY idx_status (status),
+  KEY idx_active (active)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_push_log">
+      <columns>
+        <column name="id" type="BIGINT UNSIGNED NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="BIGINT UNSIGNED NOT NULL" />
+        <column name="recipient_user_id" type="BIGINT UNSIGNED NOT NULL" />
+        <column name="title" type="VARCHAR(255) NULL" />
+        <column name="body" type="TEXT NULL" />
+        <column name="payload" type="LONGTEXT NULL" />
+        <column name="response_code" type="INT NULL" />
+        <column name="response_body" type="LONGTEXT NULL" />
+        <column name="created_at" type="DATETIME DEFAULT CURRENT_TIMESTAMP" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_push_log` (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id BIGINT UNSIGNED NOT NULL,
+  recipient_user_id BIGINT UNSIGNED NOT NULL,
+  title VARCHAR(255) NULL,
+  body TEXT NULL,
+  payload LONGTEXT NULL,
+  response_code INT NULL,
+  response_body LONGTEXT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_recipient (recipient_user_id)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+    <table name="wp_vogo_shopping_list">
+      <columns>
+        <column name="id" type="BIGINT(20) NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="BIGINT(20) NOT NULL" />
+        <column name="product_name" type="VARCHAR(255) NOT NULL" />
+        <column name="product_id" type="BIGINT(20) NULL DEFAULT NULL" />
+        <column name="vogo_product_vendor" type="VARCHAR(255) NULL DEFAULT NULL" />
+        <column name="quantity" type="INT(11) NULL DEFAULT 1" />
+        <column name="other_info" type="TEXT NULL" />
+        <column name="done_checked" type="TINYINT(1) NULL DEFAULT 0" />
+        <column name="created_at" type="DATETIME NULL DEFAULT CURRENT_TIMESTAMP" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_shopping_list` (
+  id BIGINT(20) NOT NULL AUTO_INCREMENT,
+  user_id BIGINT(20) NOT NULL,
+  product_name VARCHAR(255) NOT NULL,
+  product_id BIGINT(20) NULL DEFAULT NULL,
+  vogo_product_vendor VARCHAR(255) NULL DEFAULT NULL,
+  quantity INT(11) NULL DEFAULT 1,
+  other_info TEXT NULL,
+  done_checked TINYINT(1) NULL DEFAULT 0,
+  created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_support_users">
+      <columns>
+        <column name="user_id" type="bigint(20) UNSIGNED NOT NULL COMMENT 'WP user ID'" />
+        <column name="nickname" type="varchar(80) NOT NULL COMMENT 'Short display name'" />
+        <column name="available" type="tinyint(1) NOT NULL DEFAULT 0 COMMENT '1=available, 0=unavailable'" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp() COMMENT 'Row creation datetime (DB-managed)'" />
+        <column name="created_by" type="bigint(20) UNSIGNED DEFAULT NULL COMMENT 'Creator user id (from JWT)'" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp() COMMENT 'Last modification (DB-managed)'" />
+        <column name="modified_by" type="bigint(20) UNSIGNED DEFAULT NULL COMMENT 'Last modifier user id (from JWT)'" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_support_users` (
+
+  `user_id` bigint(20) UNSIGNED NOT NULL COMMENT 'WP user ID',
+  `nickname` varchar(80) NOT NULL COMMENT 'Short display name',
+  `available` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1=available, 0=unavailable',
+  `created_at` datetime DEFAULT current_timestamp() COMMENT 'Row creation datetime (DB-managed)',
+  `created_by` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'Creator user id (from JWT)',
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp() COMMENT 'Last modification (DB-managed)',
+  `modified_by` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'Last modifier user id (from JWT)'
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_thread_calls">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="channel_name" type="varchar(128) NOT NULL" />
+        <column name="UserId_From" type="bigint(20) unsigned NOT NULL" />
+        <column name="UserId_To" type="bigint(20) unsigned NOT NULL" />
+        <column name="discussion_id" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="start" type="datetime NOT NULL DEFAULT current_timestamp()" />
+        <column name="end" type="datetime DEFAULT NULL" />
+        <column name="duration_seconds" type="int(10) unsigned DEFAULT NULL" />
+        <column name="type" type="enum('VOICE','VIDEO') NOT NULL" />
+        <column name="is_video" type="tinyint(1) NOT NULL DEFAULT 0" />
+        <column name="is_voice" type="tinyint(1) NOT NULL DEFAULT 0" />
+        <column name="ended_by_userid" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="agora_token" type="text DEFAULT NULL" />
+        <column name="token_expire_at" type="datetime DEFAULT NULL" />
+        <column name="status" type="enum('RINGING','ONGOING','ENDED','MISSED','DECLINED','FAILED','CANCELLED') NOT NULL DEFAULT 'RINGING'" />
+        <column name="created_at" type="datetime NOT NULL DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) DEFAULT NULL" />
+        <column name="caller_agora_token" type="varchar(512) DEFAULT NULL" />
+        <column name="receiver_agora_token" type="varchar(512) DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_thread_calls` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `channel_name` varchar(128) NOT NULL,
+  `UserId_From` bigint(20) unsigned NOT NULL,
+  `UserId_To` bigint(20) unsigned NOT NULL,
+  `discussion_id` bigint(20) unsigned DEFAULT NULL,
+  `start` datetime NOT NULL DEFAULT current_timestamp(),
+  `end` datetime DEFAULT NULL,
+  `duration_seconds` int(10) unsigned DEFAULT NULL,
+  `type` enum('VOICE','VIDEO') NOT NULL,
+  `is_video` tinyint(1) NOT NULL DEFAULT 0,
+  `is_voice` tinyint(1) NOT NULL DEFAULT 0,
+  `ended_by_userid` bigint(20) unsigned DEFAULT NULL,
+  `agora_token` text DEFAULT NULL,
+  `token_expire_at` datetime DEFAULT NULL,
+  `status` enum('RINGING','ONGOING','ENDED','MISSED','DECLINED','FAILED','CANCELLED') NOT NULL DEFAULT 'RINGING',
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) DEFAULT NULL,
+  `caller_agora_token` varchar(512) DEFAULT NULL,
+  `receiver_agora_token` varchar(512) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_channel_name` (`channel_name`),
+  KEY `idx_receiver_status` (`UserId_To`,`status`),
+  KEY `idx_caller_created` (`UserId_From`,`created_at`),
+  KEY `idx_discussion` (`discussion_id`),
+  KEY `idx_status` (`status`),
+  KEY `idx_end` (`end`),
+  KEY `idx_thread_calls_channel` (`channel_name`),
+  KEY `idx_thread_calls_status` (`status`),
+  KEY `idx_thread_calls_users` (`UserId_From`,`UserId_To`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_transporters">
+      <columns>
+        <column name="user_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="first_name" type="varchar(100) DEFAULT NULL" />
+        <column name="second_name" type="varchar(100) DEFAULT NULL" />
+        <column name="nickname" type="varchar(100) DEFAULT NULL" />
+        <column name="plate_number" type="varchar(32) DEFAULT NULL" />
+        <column name="auto_type" type="varchar(50) DEFAULT NULL" />
+        <column name="auto_model" type="varchar(100) DEFAULT NULL" />
+        <column name="auto_year" type="smallint(5) unsigned DEFAULT NULL" />
+        <column name="auto_colour" type="varchar(50) DEFAULT NULL" />
+        <column name="auto_places" type="tinyint(3) unsigned DEFAULT NULL" />
+        <column name="auto_rank" type="tinyint(3) unsigned DEFAULT NULL" />
+        <column name="company_name" type="varchar(150) DEFAULT NULL" />
+        <column name="tax_id" type="varchar(32) DEFAULT NULL" />
+        <column name="phone" type="varchar(32) DEFAULT NULL" />
+        <column name="email" type="varchar(150) DEFAULT NULL" />
+        <column name="city_id" type="int(10) unsigned DEFAULT NULL" />
+        <column name="country_code" type="char(2) DEFAULT NULL" />
+        <column name="service_radius_km" type="decimal(5,2) DEFAULT NULL" />
+        <column name="is_people_licensed" type="tinyint(1) DEFAULT 0" />
+        <column name="is_goods_licensed" type="tinyint(1) DEFAULT 0" />
+        <column name="is_food_licensed" type="tinyint(1) DEFAULT 0" />
+        <column name="vehicle_photo_url" type="varchar(255) DEFAULT NULL" />
+        <column name="driver_photo_url" type="varchar(255) DEFAULT NULL" />
+        <column name="notes" type="text DEFAULT NULL" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) unsigned DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_transporters` (
+
+  `user_id` bigint(20) unsigned NOT NULL,
+  `first_name` varchar(100) DEFAULT NULL,
+  `second_name` varchar(100) DEFAULT NULL,
+  `nickname` varchar(100) DEFAULT NULL,
+  `plate_number` varchar(32) DEFAULT NULL,
+  `auto_type` varchar(50) DEFAULT NULL,
+  `auto_model` varchar(100) DEFAULT NULL,
+  `auto_year` smallint(5) unsigned DEFAULT NULL,
+  `auto_colour` varchar(50) DEFAULT NULL,
+  `auto_places` tinyint(3) unsigned DEFAULT NULL,
+  `auto_rank` tinyint(3) unsigned DEFAULT NULL,
+  `company_name` varchar(150) DEFAULT NULL,
+  `tax_id` varchar(32) DEFAULT NULL,
+  `phone` varchar(32) DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `city_id` int(10) unsigned DEFAULT NULL,
+  `country_code` char(2) DEFAULT NULL,
+  `service_radius_km` decimal(5,2) DEFAULT NULL,
+  `is_people_licensed` tinyint(1) DEFAULT 0,
+  `is_goods_licensed` tinyint(1) DEFAULT 0,
+  `is_food_licensed` tinyint(1) DEFAULT 0,
+  `vehicle_photo_url` varchar(255) DEFAULT NULL,
+  `driver_photo_url` varchar(255) DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `uniq_plate` (`plate_number`),
+  KEY `idx_nickname` (`nickname`),
+  KEY `idx_auto_type` (`auto_type`),
+  KEY `idx_auto_year` (`auto_year`),
+  KEY `idx_city_id` (`city_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_user_addresses">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="address_name" type="varchar(255) NOT NULL" />
+        <column name="street_address" type="text NOT NULL" />
+        <column name="street_address_2" type="text DEFAULT NULL" />
+        <column name="city" type="varchar(255) NOT NULL" />
+        <column name="county" type="varchar(255) NOT NULL" />
+        <column name="address_code" type="varchar(255) NOT NULL" />
+        <column name="latitude" type="decimal(10,6) DEFAULT NULL" />
+        <column name="longitude" type="decimal(10,6) DEFAULT NULL" />
+        <column name="status" type="enum('active','inactive') NOT NULL DEFAULT 'inactive'" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_user_addresses` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `address_name` varchar(255) NOT NULL,
+  `street_address` text NOT NULL,
+  `street_address_2` text DEFAULT NULL,
+  `city` varchar(255) NOT NULL,
+  `county` varchar(255) NOT NULL,
+  `address_code` varchar(255) NOT NULL,
+  `latitude` decimal(10,6) DEFAULT NULL,
+  `longitude` decimal(10,6) DEFAULT NULL,
+  `status` enum('active','inactive') NOT NULL DEFAULT 'inactive',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_user_label` (`user_id`,`address_name`),
+  UNIQUE KEY `uniq_user_label2` (`user_id`,`address_name`),
+  KEY `idx_user_status` (`user_id`,`status`),
+  KEY `idx_user_city` (`user_id`,`city`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_user_bank_accounts">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="account_holder_name" type="varchar(150) NOT NULL" />
+        <column name="bank_name" type="varchar(150) NOT NULL" />
+        <column name="account_number" type="varchar(64) NOT NULL" />
+        <column name="iban_number" type="varchar(64) DEFAULT ''" />
+        <column name="ifsc_code" type="varchar(64) DEFAULT ''" />
+        <column name="is_primary" type="tinyint(1) NOT NULL DEFAULT 0" />
+        <column name="status" type="enum('active','hidden') NOT NULL DEFAULT 'active'" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_user_bank_accounts` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `account_holder_name` varchar(150) NOT NULL,
+  `bank_name` varchar(150) NOT NULL,
+  `account_number` varchar(64) NOT NULL,
+  `iban_number` varchar(64) DEFAULT '',
+  `ifsc_code` varchar(64) DEFAULT '',
+  `is_primary` tinyint(1) NOT NULL DEFAULT 0,
+  `status` enum('active','hidden') NOT NULL DEFAULT 'active',
+  `created_at` datetime DEFAULT current_timestamp(),
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_user` (`user_id`),
+  KEY `idx_primary` (`user_id`,`is_primary`),
+  KEY `idx_iban` (`user_id`,`iban_number`),
+  KEY `idx_accnum` (`user_id`,`account_number`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_user_document_data">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="document_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="document_link" type="text NOT NULL" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) unsigned DEFAULT NULL" />
+        <column name="updated_at" type="datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()" />
+        <column name="updated_by" type="bigint(20) unsigned DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_user_document_data` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `document_id` bigint(20) unsigned NOT NULL,
+  `document_link` text NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `document_id` (`document_id`),
+  KEY `user_id` (`user_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_user_documents_def">
+      <columns>
+        <column name="id" type="bigint(20) UNSIGNED NOT NULL" />
+        <column name="document_type" type="varchar(400) NOT NULL" />
+        <column name="required" type="tinyint(1) NOT NULL DEFAULT 0" />
+        <column name="apply_to_role" type="varchar(400) NOT NULL CHECK (`apply_to_role` in ('vendor','transport','client','admin','vendor2'))" />
+        <column name="position" type="float DEFAULT 0" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) UNSIGNED DEFAULT NULL" />
+        <column name="updated_at" type="datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()" />
+        <column name="updated_by" type="bigint(20) UNSIGNED DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_user_documents_def` (
+
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `document_type` varchar(400) NOT NULL,
+  `required` tinyint(1) NOT NULL DEFAULT 0,
+  `apply_to_role` varchar(400) NOT NULL CHECK (`apply_to_role` in ('vendor','transport','client','admin','vendor2')),
+  `position` float DEFAULT 0,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (`id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_user_email_otp">
+      <columns>
+        <column name="id" type="BIGINT UNSIGNED NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="BIGINT UNSIGNED NOT NULL" />
+        <column name="email" type="VARCHAR(191)    NOT NULL" />
+        <column name="otp_code" type="CHAR(6)         NOT NULL,        -- A-Z0-9 (uppercase) sau 0-9" />
+        <column name="expires_at" type="DATETIME        NOT NULL,        -- ex. NOW()+INTERVAL 15 MINUTE" />
+        <column name="verified_at" type="DATETIME        DEFAULT NULL" />
+        <column name="attempts" type="TINYINT UNSIGNED NOT NULL DEFAULT 0" />
+        <column name="created_at" type="DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_user_email_otp` (
+
+  `id`            BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id`       BIGINT UNSIGNED NOT NULL,
+  `email`         VARCHAR(191)    NOT NULL,
+  `otp_code`      CHAR(6)         NOT NULL,        -- A-Z0-9 (uppercase) sau 0-9
+  `expires_at`    DATETIME        NOT NULL,        -- ex. NOW()+INTERVAL 15 MINUTE
+  `verified_at`   DATETIME        DEFAULT NULL,
+  `attempts`      TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  `created_at`    DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_user_exp` (`user_id`,`expires_at`),
+  KEY `idx_email` (`email`),
+  KEY `idx_verified` (`verified_at`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_user_group_categories">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="group_id" type="int(11) NOT NULL" />
+        <column name="category_id" type="bigint(20) unsigned NOT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_user_group_categories` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `category_id` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `group_category_unique` (`group_id`,`category_id`),
+  KEY `category_id` (`category_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_user_group_users">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="group_id" type="int(11) NOT NULL" />
+        <column name="user_id" type="bigint(20) unsigned NOT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_user_group_users` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `user_id` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_group_unique` (`group_id`,`user_id`),
+  KEY `user_id` (`user_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_user_groups">
+      <columns>
+        <column name="id" type="bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="int(11) NOT NULL" />
+        <column name="group_id" type="int(11) NOT NULL" />
+        <column name="name" type="varchar(255) NOT NULL" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="label" type="varchar(255) DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_user_groups` (
+
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `label` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_user_id` (`user_id`),
+  KEY `idx_group_id` (`group_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_user_info">
+      <columns>
+        <column name="id" type="BIGINT(20) NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="BIGINT(20) NOT NULL" />
+        <column name="company_name" type="VARCHAR(255) NULL" />
+        <column name="fiscal_code" type="VARCHAR(50) NULL" />
+        <column name="area_of_interest_id" type="INT(11) NULL" />
+        <column name="address" type="TEXT NULL" />
+        <column name="shop_no" type="VARCHAR(50) NULL" />
+        <column name="floor" type="VARCHAR(50) NULL" />
+        <column name="building_name" type="VARCHAR(255) NULL" />
+        <column name="postcode" type="VARCHAR(20) NULL" />
+        <column name="latitude" type="VARCHAR(50) NULL" />
+        <column name="longitude" type="VARCHAR(50) NULL" />
+        <column name="company_doc" type="TEXT NULL" />
+        <column name="phone" type="VARCHAR(20) NULL" />
+        <column name="sms" type="VARCHAR(20) NULL" />
+        <column name="whatsapp" type="VARCHAR(20) NULL" />
+        <column name="default_city_id" type="INT(11) NULL DEFAULT NULL" />
+        <column name="created_at" type="DATETIME NULL DEFAULT CURRENT_TIMESTAMP" />
+        <column name="client_nickname" type="VARCHAR(10) NULL" />
+        <column name="my_referral_code" type="VARCHAR(50) NULL" />
+        <column name="used_refferal_code" type="VARCHAR(50) NULL" />
+        <column name="parent_user_id" type="BIGINT(20) NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_user_info` (
+  id BIGINT(20) NOT NULL AUTO_INCREMENT,
+  user_id BIGINT(20) NOT NULL,
+  company_name VARCHAR(255) NULL,
+  fiscal_code VARCHAR(50) NULL,
+  area_of_interest_id INT(11) NULL,
+  address TEXT NULL,
+  shop_no VARCHAR(50) NULL,
+  floor VARCHAR(50) NULL,
+  building_name VARCHAR(255) NULL,
+  postcode VARCHAR(20) NULL,
+  latitude VARCHAR(50) NULL,
+  longitude VARCHAR(50) NULL,
+  company_doc TEXT NULL,
+  phone VARCHAR(20) NULL,
+  sms VARCHAR(20) NULL,
+  whatsapp VARCHAR(20) NULL,
+  default_city_id INT(11) NULL DEFAULT NULL,
+  created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  client_nickname VARCHAR(10) NULL,
+  my_referral_code VARCHAR(50) NULL,
+  used_refferal_code VARCHAR(50) NULL,
+  parent_user_id BIGINT(20) NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY wp_vogo_user_info_uk_refcode (my_referral_code),
+  KEY idx_vogo_user_info_user_id (user_id),
+  KEY idx_vui_default_city_id (default_city_id),
+  KEY idx_userinfo_myref (my_referral_code),
+  KEY idx_userinfo_used (used_refferal_code),
+  KEY idx_userinfo_parent (parent_user_id)
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_user_pin_code">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="user_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="brand_name" type="varchar(191) NOT NULL" />
+        <column name="pincode" type="varchar(32) NOT NULL" />
+        <column name="otp_code" type="varchar(32) DEFAULT NULL" />
+        <column name="created_at" type="datetime NOT NULL DEFAULT current_timestamp()" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_user_pin_code` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `brand_name` varchar(191) NOT NULL,
+  `pincode` varchar(32) NOT NULL,
+  `otp_code` varchar(32) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_user_brand_pin` (`user_id`,`brand_name`,`pincode`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_vendors_picking_points">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="provider_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="city_id" type="bigint(20) unsigned NOT NULL" />
+        <column name="location_code" type="varchar(191) NOT NULL" />
+        <column name="latitude" type="decimal(10,7) NOT NULL" />
+        <column name="longitude" type="decimal(10,7) NOT NULL" />
+        <column name="is_primary" type="tinyint(1) NOT NULL DEFAULT 1" />
+        <column name="is_active" type="tinyint(1) NOT NULL DEFAULT 1" />
+        <column name="created_at" type="datetime NOT NULL DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) unsigned NOT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) unsigned DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_vendors_picking_points` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `provider_id` bigint(20) unsigned NOT NULL,
+  `city_id` bigint(20) unsigned NOT NULL,
+  `location_code` varchar(191) NOT NULL,
+  `latitude` decimal(10,7) NOT NULL,
+  `longitude` decimal(10,7) NOT NULL,
+  `is_primary` tinyint(1) NOT NULL DEFAULT 1,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_by` bigint(20) unsigned NOT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_vendor_city_code` (`provider_id`,`city_id`,`location_code`),
+  KEY `k_provider` (`provider_id`),
+  KEY `k_city` (`city_id`),
+  KEY `k_active_primary` (`is_active`,`is_primary`),
+  KEY `k_provider_city` (`provider_id`,`city_id`,`is_active`,`is_primary`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+    <table name="wp_vogo_vogo_category_meta_action">
+      <columns>
+        <column name="id" type="bigint(20) unsigned NOT NULL AUTO_INCREMENT" />
+        <column name="category_id" type="bigint(20) unsigned NOT NULL COMMENT 'FK to wp_terms.term_id (product_cat)'" />
+        <column name="camera_broadcast_url" type="varchar(500) DEFAULT NULL" />
+        <column name="zoom_live_call_link" type="varchar(500) DEFAULT NULL" />
+        <column name="whatsapp_contact_url" type="varchar(500) DEFAULT NULL" />
+        <column name="suggest_service_link" type="varchar(500) DEFAULT NULL" />
+        <column name="action_whatsapp_label" type="varchar(255) DEFAULT NULL" />
+        <column name="action_whatsapp_number" type="varchar(50) DEFAULT NULL" />
+        <column name="action_whatsapp_message" type="text DEFAULT NULL" />
+        <column name="action_url_label" type="varchar(255) DEFAULT NULL" />
+        <column name="action_url_link" type="varchar(500) DEFAULT NULL" />
+        <column name="created_at" type="datetime DEFAULT current_timestamp()" />
+        <column name="created_by" type="bigint(20) DEFAULT NULL" />
+        <column name="modified_at" type="datetime DEFAULT NULL ON UPDATE current_timestamp()" />
+        <column name="modified_by" type="bigint(20) DEFAULT NULL" />
+      </columns>
+      <create-sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `wp_vogo_vogo_category_meta_action` (
+
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` bigint(20) unsigned NOT NULL COMMENT 'FK to wp_terms.term_id (product_cat)',
+  `camera_broadcast_url` varchar(500) DEFAULT NULL,
+  `zoom_live_call_link` varchar(500) DEFAULT NULL,
+  `whatsapp_contact_url` varchar(500) DEFAULT NULL,
+  `suggest_service_link` varchar(500) DEFAULT NULL,
+  `action_whatsapp_label` varchar(255) DEFAULT NULL,
+  `action_whatsapp_number` varchar(50) DEFAULT NULL,
+  `action_whatsapp_message` text DEFAULT NULL,
+  `action_url_label` varchar(255) DEFAULT NULL,
+  `action_url_link` varchar(500) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `created_by` bigint(20) DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_by` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_category` (`category_id`),
+  KEY `idx_category` (`category_id`)
+
+) {charset_collate};
+      ]]></create-sql>
+    </table>
+
+  </vogo-objects-tables>
+
+  <vogo-procedures>
+    <procedure name="vogo_sync_woo_users_tovogo">
+      <create-sql><![CDATA[
+CREATE PROCEDURE vogo_sync_woo_users_tovogo (IN p_user_id BIGINT)
+BEGIN
+  DECLARE v_is_single BOOLEAN DEFAULT FALSE;
+  SET v_is_single = (p_user_id IS NOT NULL AND p_user_id > 0);
+
+  IF v_is_single THEN
+    INSERT INTO {prefix}vogo_user_info (user_id, created_at)
+    SELECT u.ID, NOW()
+    FROM {prefix}users u
+    WHERE u.ID = p_user_id
+      AND NOT EXISTS (SELECT 1 FROM {prefix}vogo_user_info vui WHERE vui.user_id=u.ID);
+  ELSE
+    INSERT INTO {prefix}vogo_user_info (user_id, created_at)
+    SELECT u.ID, NOW()
+    FROM {prefix}users u
+    WHERE NOT EXISTS (SELECT 1 FROM {prefix}vogo_user_info vui WHERE vui.user_id=u.ID);
+  END IF;
+
+  IF v_is_single THEN
+    UPDATE {prefix}vogo_user_info vui
+    JOIN (
+      SELECT 
+        um.user_id,
+        MAX(CASE WHEN um.meta_key='billing_company' THEN um.meta_value END) AS billing_company,
+        MAX(CASE WHEN um.meta_key='phone'           THEN um.meta_value END) AS user_phone
+      FROM {prefix}usermeta um
+      WHERE um.user_id = p_user_id
+        AND um.meta_key IN ('billing_company','phone')
+      GROUP BY um.user_id
+    ) m ON m.user_id = vui.user_id
+    SET
+      vui.company_name = COALESCE(NULLIF(m.billing_company,''), vui.company_name),
+      vui.phone        = COALESCE(NULLIF(m.user_phone,''),      vui.phone),
+      vui.sms          = COALESCE(NULLIF(m.user_phone,''),      vui.sms);
+  ELSE
+    UPDATE {prefix}vogo_user_info vui
+    JOIN (
+      SELECT 
+        um.user_id,
+        MAX(CASE WHEN um.meta_key='billing_company' THEN um.meta_value END) AS billing_company,
+        MAX(CASE WHEN um.meta_key='phone'           THEN um.meta_value END) AS user_phone
+      FROM {prefix}usermeta um
+      WHERE um.meta_key IN ('billing_company','phone')
+      GROUP BY um.user_id
+    ) m ON m.user_id = vui.user_id
+    SET
+      vui.company_name = COALESCE(NULLIF(m.billing_company,''), vui.company_name),
+      vui.phone        = COALESCE(NULLIF(m.user_phone,''),      vui.phone),
+      vui.sms          = COALESCE(NULLIF(m.user_phone,''),      vui.sms);
+  END IF;
+END
+      ]]></create-sql>
+    </procedure>
+  </vogo-procedures>
+
+  <vogo-triggers>
+    <trigger name="trg_{prefix}vogo_providers_after_delete">
+      <create-sql><![CDATA[
+CREATE TRIGGER `trg_{prefix}vogo_providers_after_delete` AFTER DELETE ON `{prefix}vogo_providers` FOR EACH ROW
+INSERT INTO `{prefix}vogo_providers_log`
+(`audit_user`,`audit_operation`,`id`,`provider_name`,`provider_slug`,`term_id`,`user_id`,`accepting_orders`,`status`,`created_at`,`created_by`,`modified_at`,`modified_by`,`legacy_pf_id`)
+VALUES (OLD.modified_by,'DEL',OLD.id,OLD.provider_name,OLD.provider_slug,OLD.term_id,OLD.user_id,OLD.accepting_orders,OLD.status,OLD.created_at,OLD.created_by,OLD.modified_at,OLD.modified_by,OLD.legacy_pf_id)
+      ]]></create-sql>
+    </trigger>
+    <trigger name="trg_{prefix}vogo_providers_after_update">
+      <create-sql><![CDATA[
+CREATE TRIGGER `trg_{prefix}vogo_providers_after_update` AFTER UPDATE ON `{prefix}vogo_providers` FOR EACH ROW
+INSERT INTO `{prefix}vogo_providers_log`
+(`audit_user`,`audit_operation`,`id`,`provider_name`,`provider_slug`,`term_id`,`user_id`,`accepting_orders`,`status`,`created_at`,`created_by`,`modified_at`,`modified_by`,`legacy_pf_id`)
+VALUES (NEW.modified_by,'UPD',NEW.id,NEW.provider_name,NEW.provider_slug,NEW.term_id,NEW.user_id,NEW.accepting_orders,NEW.status,NEW.created_at,NEW.created_by,NEW.modified_at,NEW.modified_by,NEW.legacy_pf_id)
+      ]]></create-sql>
+    </trigger>
+    <trigger name="{prefix}support_users_AD">
+      <create-sql><![CDATA[
+CREATE TRIGGER `{prefix}support_users_AD` AFTER DELETE ON `{prefix}vogo_support_users` FOR EACH ROW
+BEGIN
+  /* Keep a lightweight trigger body so diagnostics can create the trigger even when audit tables are absent. */
+  SET @vogo_support_users_ad = OLD.user_id;
+END
+      ]]></create-sql>
+    </trigger>
+    <trigger name="{prefix}support_users_AU">
+      <create-sql><![CDATA[
+CREATE TRIGGER `{prefix}support_users_AU` AFTER UPDATE ON `{prefix}vogo_support_users` FOR EACH ROW
+BEGIN
+  /* Keep a lightweight trigger body so diagnostics can create the trigger even when audit tables are absent. */
+  SET @vogo_support_users_au = NEW.user_id;
+END
+      ]]></create-sql>
+    </trigger>
+  </vogo-triggers>
+
+  <vogo-view>
+    <view name="{prefix}vogo_view_woo_orders">
+      <create-sql><![CDATA[
+CREATE OR REPLACE VIEW `{prefix}vogo_view_woo_orders` AS
+SELECT
+  `o`.`id` AS `order_id`,
+  `o`.`total_amount` AS `total_amount`,
+  `o`.`currency` AS `currency`,
+  `o`.`status` AS `status`,
+  `o`.`customer_id` AS `customer_id`,
+  `o`.`date_created_gmt` AS `date_created_gmt`,
+  `o`.`date_created_gmt` + interval 2 hour AS `created_at_local`,
+  `o`.`payment_method_title` AS `payment_method_title`
+FROM `{prefix}wc_orders` `o`
+WHERE `o`.`type` = 'shop_order'
+      ]]></create-sql>
+    </view>
+    <view name="{prefix}vogo_products2">
+      <create-sql><![CDATA[
+CREATE OR REPLACE VIEW `{prefix}vogo_products2` AS
+SELECT
+  `p`.`ID` AS `product_id`,
+  `p`.`post_title` AS `post_title`,
+  `p`.`post_status` AS `post_status`,
+  `p`.`post_date` AS `published_date`,
+  `p`.`post_content` AS `product_description`,
+  `p`.`post_excerpt` AS `product_short_description`,
+  `p`.`post_name` AS `slug`,
+  `p`.`menu_order` AS `position`,
+  `sku`.`meta_value` AS `sku`,
+  `lookup`.`stock_quantity` AS `stock_quantity`,
+  `lookup`.`stock_status` AS `stock_status`,
+  `lookup`.`min_price` AS `price`,
+  IFNULL(`lookup`.`max_price`, '9999') AS `max_price`,
+  'public' AS `visibility`,
+  `p`.`post_title` AS `seo_title`,
+  `p`.`post_content` AS `seo_description`,
+  `pm_thumb`.`meta_value` AS `product_image_id`,
+  `img`.`guid` AS `product_image_url`,
+  'vogo' AS `brand`,
+  `vp`.`provider_name` AS `product_providers`,
+  `vp`.`id` AS `provider_id`
+FROM
+  `{prefix}posts` `p`
+  LEFT JOIN `{prefix}wc_product_meta_lookup` `lookup` ON (`lookup`.`product_id` = `p`.`ID`)
+  LEFT JOIN `{prefix}postmeta` `sku` ON (`sku`.`post_id` = `p`.`ID` AND `sku`.`meta_key` = '_sku')
+  LEFT JOIN `{prefix}postmeta` `pm_thumb` ON (`pm_thumb`.`post_id` = `p`.`ID` AND `pm_thumb`.`meta_key` = '_thumbnail_id')
+  LEFT JOIN `{prefix}posts` `img` ON (`img`.`ID` = CAST(`pm_thumb`.`meta_value` AS UNSIGNED))
+  LEFT JOIN `{prefix}vogo_product_vendor` `pv` ON (`pv`.`product_id` = `p`.`ID`)
+  LEFT JOIN `{prefix}vogo_providers` `vp` ON (`vp`.`id` = `pv`.`vendor_id`)
+WHERE
+  `p`.`post_type` = 'product'
+  AND `p`.`post_status` IN ('publish', 'draft', 'pending')
+      ]]></create-sql>
+    </view>
+    <view name="{prefix}view_vogo_products_ok2">
+      <create-sql><![CDATA[
+CREATE OR REPLACE VIEW `{prefix}view_vogo_products_ok2` AS
+SELECT
+  `p`.`ID` AS `product_id`,
+  `p`.`post_title` AS `product_name`,
+  `p`.`post_status` AS `product_status`,
+  `p`.`post_date` AS `published_date`,
+  `p`.`post_content` AS `product_description`,
+  `p`.`post_excerpt` AS `product_short_description`,
+  `p`.`post_name` AS `slug`,
+  `p`.`menu_order` AS `position`,
+  `sku`.`meta_value` AS `sku`,
+  `lookup`.`stock_quantity` AS `stock_quantity`,
+  `lookup`.`stock_status` AS `stock_status`,
+  `lookup`.`min_price` AS `price`,
+  IFNULL(`lookup`.`max_price`, '9999') AS `max_price`,
+  'public' AS `visibility`,
+  `p`.`post_title` AS `seo_title`,
+  `p`.`post_content` AS `seo_description`,
+  (
+    SELECT `pmimg`.`meta_value`
+    FROM `{prefix}postmeta` `pmimg`
+    WHERE `pmimg`.`post_id` = `p`.`ID` AND `pmimg`.`meta_key` = '_thumbnail_id'
+    LIMIT 1
+  ) AS `product_image_id`,
+  (
+    SELECT `pimg`.`guid`
+    FROM `{prefix}posts` `pimg`
+    WHERE `pimg`.`ID` = (
+      SELECT `pmimg`.`meta_value`
+      FROM `{prefix}postmeta` `pmimg`
+      WHERE `pmimg`.`post_id` = `p`.`ID` AND `pmimg`.`meta_key` = '_thumbnail_id'
+      LIMIT 1
+    )
+    LIMIT 1
+  ) AS `product_image_url`,
+  COALESCE(
+    (
+      SELECT `pma`.`product_main_category_id`
+      FROM `{prefix}vogo_product_meta_action` `pma`
+      WHERE `pma`.`product_id` = `p`.`ID`
+      LIMIT 1
+    ),
+    (
+      SELECT `tt`.`term_id`
+      FROM `{prefix}term_relationships` `tr`
+      JOIN `{prefix}term_taxonomy` `tt`
+        ON (`tt`.`term_taxonomy_id` = `tr`.`term_taxonomy_id` AND `tt`.`taxonomy` = 'product_cat')
+      WHERE `tr`.`object_id` = `p`.`ID`
+      ORDER BY `tt`.`term_id`
+      LIMIT 1
+    )
+  ) AS `category_id`,
+  (
+    SELECT `t`.`name`
+    FROM `{prefix}terms` `t`
+    WHERE `t`.`term_id` = COALESCE(
+      (
+        SELECT `pma2`.`product_main_category_id`
+        FROM `{prefix}vogo_product_meta_action` `pma2`
+        WHERE `pma2`.`product_id` = `p`.`ID`
+        LIMIT 1
+      ),
+      (
+        SELECT `tt2`.`term_id`
+        FROM `{prefix}term_relationships` `tr2`
+        JOIN `{prefix}term_taxonomy` `tt2`
+          ON (`tt2`.`term_taxonomy_id` = `tr2`.`term_taxonomy_id` AND `tt2`.`taxonomy` = 'product_cat')
+        WHERE `tr2`.`object_id` = `p`.`ID`
+        ORDER BY `tt2`.`term_id`
+        LIMIT 1
+      )
+    )
+    LIMIT 1
+  ) AS `category_name`,
+  'vogo' AS `brand`,
+  `vp`.`provider_name` AS `product_providers`,
+  `vp`.`id` AS `provider_id`
+FROM
+  `{prefix}posts` `p`
+  LEFT JOIN `{prefix}wc_product_meta_lookup` `lookup` ON (`lookup`.`product_id` = `p`.`ID`)
+  LEFT JOIN `{prefix}postmeta` `sku` ON (`sku`.`post_id` = `p`.`ID` AND `sku`.`meta_key` = '_sku')
+  LEFT JOIN `{prefix}vogo_product_vendor` `pv` ON (`pv`.`product_id` = `p`.`ID`)
+  LEFT JOIN `{prefix}vogo_providers` `vp` ON (`vp`.`id` = `pv`.`vendor_id`)
+WHERE
+  `p`.`post_type` = 'product'
+  AND `p`.`post_status` IN ('publish', 'draft', 'pending')
+      ]]></create-sql>
+    </view>
+    <view name="{prefix}view_vogo_orders">
+      <create-sql><![CDATA[
+CREATE OR REPLACE VIEW `{prefix}view_vogo_orders` AS
+SELECT
+  `{prefix}vogo_orders`.`id` AS `id`,
+  `{prefix}vogo_orders`.`parent_order_id` AS `parent_order_id`,
+  `{prefix}vogo_orders`.`client_id` AS `client_id`,
+  `{prefix}vogo_orders`.`provider_id` AS `provider_id`,
+  `{prefix}vogo_orders`.`picking_point_id` AS `picking_point_id`,
+  `{prefix}vogo_orders`.`pick_latitude` AS `pick_latitude`,
+  `{prefix}vogo_orders`.`pick_longitude` AS `pick_longitude`,
+  `{prefix}vogo_orders`.`notes_customer` AS `notes_customer`,
+  `{prefix}vogo_orders`.`notes_provider` AS `notes_provider`,
+  `{prefix}vogo_orders`.`notes_transporter` AS `notes_transporter`,
+  `{prefix}vogo_orders`.`city_id` AS `city_id`,
+  `{prefix}vogo_orders`.`total_amount` AS `total_amount`,
+  `{prefix}vogo_orders`.`currency` AS `currency`,
+  `{prefix}vogo_orders`.`payment_method_title` AS `payment_method_title`,
+  `{prefix}vogo_orders`.`status` AS `status`,
+  `{prefix}vogo_orders`.`delivery_type` AS `delivery_type`,
+  `{prefix}vogo_orders`.`created_at` AS `created_at`,
+  `{prefix}vogo_orders`.`end_lat` AS `end_lat`,
+  `{prefix}vogo_orders`.`end_long` AS `end_long`,
+  `{prefix}vogo_orders`.`address_pick` AS `address_pick`,
+  `{prefix}vogo_orders`.`address_end` AS `address_end`,
+  `{prefix}vogo_orders`.`distance_km` AS `distance_km`,
+  `{prefix}vogo_orders`.`calculated_fields` AS `calculated_fields`,
+  `{prefix}vogo_orders`.`created_by` AS `created_by`,
+  `{prefix}vogo_orders`.`modified_at` AS `modified_at`,
+  `{prefix}vogo_orders`.`modified_by` AS `modified_by`,
+  `{prefix}vogo_orders`.`order_short_description` AS `order_short_description`,
+  `{prefix}vogo_orders`.`relevant_image` AS `relevant_image`,
+  `{prefix}vogo_orders`.`provider_name` AS `provider_name`
+FROM `{prefix}vogo_orders`
+      ]]></create-sql>
+    </view>
+    <!-- Diagnostics compatibility: use termmeta-based position because wp_terms.term_order is not available in all WP schemas. -->
+    <view name="vogo_mobile_categories">
+      <create-sql><![CDATA[
+CREATE OR REPLACE VIEW `vogo_mobile_categories` AS
+SELECT
+  `t`.`term_id` AS `term_id`,
+  `t`.`name` AS `name`,
+  `t`.`slug` AS `slug`,
+  `tt`.`parent` AS `parent`,
+  `p`.`name` AS `parent_name`,
+  `tt`.`count` AS `count`,
+  `m`.`meta_value` AS `mobile_category`,
+  CAST(COALESCE(`pos`.`meta_value`, '0') AS SIGNED) AS `position`
+FROM
+  ((`{prefix}terms` `t`
+    JOIN `{prefix}term_taxonomy` `tt`
+      ON (`tt`.`term_id` = `t`.`term_id` AND `tt`.`taxonomy` = 'product_cat'))
+    LEFT JOIN `{prefix}termmeta` `m`
+      ON (`m`.`term_id` = `t`.`term_id` AND `m`.`meta_key` = 'mobile_category'))
+    LEFT JOIN `{prefix}termmeta` `pos`
+      ON (`pos`.`term_id` = `t`.`term_id` AND `pos`.`meta_key` = 'order'))
+    LEFT JOIN `{prefix}terms` `p` ON (`p`.`term_id` = `tt`.`parent`)
+WHERE
+  `m`.`meta_value` = '1'
+ORDER BY
+  CAST(COALESCE(`pos`.`meta_value`, '0') AS SIGNED),
+  COALESCE(`p`.`name`, ''),
+  `t`.`name`
+      ]]></create-sql>
+    </view>
+    <view name="vogo_ddl">
+      <create-sql><![CDATA[
+CREATE OR REPLACE VIEW `vogo_ddl` AS
+SELECT
+  `c`.`TABLE_NAME` AS `table_name`,
+  `c`.`COLUMN_NAME` AS `column_name`,
+  CASE
+    WHEN `c`.`DATA_TYPE` IN ('varchar', 'char', 'varbinary', 'binary')
+      THEN CONCAT(UCASE(`c`.`DATA_TYPE`), '(', `c`.`CHARACTER_MAXIMUM_LENGTH`, ')')
+    WHEN `c`.`DATA_TYPE` IN ('decimal', 'double', 'float')
+      THEN CONCAT(UCASE(`c`.`DATA_TYPE`), '(', IFNULL(`c`.`NUMERIC_PRECISION`, '?'), ',', IFNULL(`c`.`NUMERIC_SCALE`, '?'), ')')
+    WHEN `c`.`DATA_TYPE` IN ('int', 'tinyint', 'smallint', 'mediumint', 'bigint')
+      THEN CONCAT(UCASE(`c`.`DATA_TYPE`), '(', IFNULL(`c`.`NUMERIC_PRECISION`, '?'), ')')
+    WHEN `c`.`DATA_TYPE` IN ('enum', 'set')
+      THEN `c`.`COLUMN_TYPE`
+    ELSE UCASE(`c`.`DATA_TYPE`)
+  END AS `data_type`,
+  `c`.`ORDINAL_POSITION` AS `ordinal_pos`,
+  `c`.`IS_NULLABLE` AS `is_nullable`,
+  `c`.`COLUMN_DEFAULT` AS `column_default`,
+  `c`.`COLUMN_KEY` AS `column_key`,
+  `c`.`EXTRA` AS `extra`
+FROM `INFORMATION_SCHEMA`.`COLUMNS` `c`
+WHERE `c`.`TABLE_SCHEMA` = DATABASE()
+      ]]></create-sql>
+    </view>
+    <view name="{prefix}vogo_products1">
+      <create-sql><![CDATA[
+CREATE OR REPLACE VIEW `{prefix}vogo_products1` AS
+SELECT
+  `p`.`ID` AS `product_id`,
+  `p`.`post_title` AS `post_title`,
+  `lookup`.`sku` AS `sku`,
+  `lookup`.`stock_quantity` AS `stock_quantity`,
+  `lookup`.`stock_status` AS `stock_status`,
+  `lookup`.`min_price` AS `price`,
+  GROUP_CONCAT(`t`.`name` SEPARATOR ', ') AS `product_providers`
+FROM
+  (((`{prefix}posts` `p`
+    LEFT JOIN `{prefix}wc_product_meta_lookup` `lookup` ON (`p`.`ID` = `lookup`.`product_id`))
+    LEFT JOIN `{prefix}term_relationships` `tr` ON (`tr`.`object_id` = `p`.`ID`))
+    LEFT JOIN `{prefix}term_taxonomy` `tt`
+      ON (`tr`.`term_taxonomy_id` = `tt`.`term_taxonomy_id` AND `tt`.`taxonomy` = 'product_provider'))
+    LEFT JOIN `{prefix}terms` `t` ON (`tt`.`term_id` = `t`.`term_id`)
+WHERE
+  `p`.`post_type` = 'product'
+  AND `p`.`post_status` IN ('publish', 'draft', 'pending')
+GROUP BY `p`.`ID`
+      ]]></create-sql>
+    </view>
+    <view name="{prefix}imp_data">
+      <create-sql><![CDATA[
+CREATE OR REPLACE VIEW `{prefix}imp_data` AS
+SELECT
+  `imp_data`.`id` AS `id`,
+  `imp_data`.`id_import` AS `id_import`,
+  `imp_data`.`original_producer` AS `original_producer`,
+  `imp_data`.`vendor` AS `vendor`,
+  `imp_data`.`vendor_id` AS `vendor_id`,
+  `imp_data`.`product_name` AS `product_name`,
+  `imp_data`.`description` AS `description`,
+  `imp_data`.`stock_qty` AS `stock_qty`,
+  `imp_data`.`sku` AS `sku`,
+  `imp_data`.`image_url` AS `image_url`,
+  `imp_data`.`price_basic` AS `price_basic`,
+  `imp_data`.`vat_rate` AS `vat_rate`,
+  `imp_data`.`barcode` AS `barcode`,
+  `imp_data`.`coeficient` AS `coeficient`,
+  `imp_data`.`sales_price` AS `sales_price`,
+  `imp_data`.`promotional_price` AS `promotional_price`,
+  `imp_data`.`cat` AS `cat`,
+  `imp_data`.`subcat1` AS `subcat1`,
+  `imp_data`.`subcat2` AS `subcat2`,
+  `imp_data`.`processed` AS `processed`,
+  `imp_data`.`processing_date` AS `processing_date`,
+  `imp_data`.`id_product` AS `id_product`,
+  `imp_data`.`error_description` AS `error_description`
+FROM `imp_data`
+      ]]></create-sql>
+    </view>
+    <view name="{prefix}vogo_view_woo_orders_childs">
+      <create-sql><![CDATA[
+CREATE OR REPLACE VIEW `{prefix}vogo_view_woo_orders_childs` AS
+SELECT
+  `o`.`id` AS `order_id`,
+  `o`.`total_amount` AS `total_amount`,
+  `o`.`currency` AS `currency`,
+  `o`.`status` AS `status`,
+  `o`.`customer_id` AS `customer_id`,
+  `o`.`date_created_gmt` AS `date_created_gmt`,
+  `o`.`date_created_gmt` + interval 2 hour AS `created_at_local`,
+  `o`.`parent_order_id` AS `parent_order_id`,
+  CAST(`om`.`meta_value` AS UNSIGNED) AS `order_vendor_id`,
+  `o`.`payment_method_title` AS `payment_method_title`
+FROM `{prefix}wc_orders` `o`
+LEFT JOIN `{prefix}wc_orders_meta` `om`
+  ON (`om`.`order_id` = `o`.`id` AND `om`.`meta_key` = '_vogo_vendor_id')
+WHERE
+  `o`.`type` = 'shop_order'
+  AND COALESCE(`o`.`parent_order_id`, 0) > 0
+      ]]></create-sql>
+    </view>
+    <view name="V_VOGO_PRODUCTS">
+      <create-sql><![CDATA[
+CREATE OR REPLACE VIEW `V_VOGO_PRODUCTS` AS
+SELECT
+  `{prefix}posts`.`ID` AS `ID`,
+  `{prefix}posts`.`post_title` AS `post_title`,
+  `{prefix}posts`.`post_type` AS `post_type`
+FROM `{prefix}posts`
+WHERE
+  `{prefix}posts`.`post_type` = 'product'
+  AND `{prefix}posts`.`post_status` = 'publish'
+      ]]></create-sql>
+    </view>
+    <view name="{prefix}vogo_view_woo_orders_lines">
+      <create-sql><![CDATA[
+CREATE OR REPLACE VIEW `{prefix}vogo_view_woo_orders_lines` AS
+SELECT
+  `oi`.`order_id` AS `order_id`,
+  `oi`.`order_item_id` AS `order_item_id`,
+  CAST(`p_id`.`meta_value` AS UNSIGNED) AS `product_id`,
+  `oi`.`order_item_name` AS `product_name`,
+  CAST(`qty`.`meta_value` AS DECIMAL(19, 6)) AS `qty`,
+  CAST(`ls`.`meta_value` AS DECIMAL(19, 6)) AS `line_subtotal`,
+  CAST(`lst`.`meta_value` AS DECIMAL(19, 6)) AS `line_subtotal_tax`,
+  CASE
+    WHEN CAST(`ls`.`meta_value` AS DECIMAL(19, 6)) > 0
+      THEN ROUND(CAST(`lst`.`meta_value` AS DECIMAL(19, 6)) / CAST(`ls`.`meta_value` AS DECIMAL(19, 6)) * 100, 2)
+    ELSE 0
+  END AS `tax_rate`,
+  CAST(`lt`.`meta_value` AS DECIMAL(19, 6)) AS `line_total`,
+  GREATEST(CAST(`ls`.`meta_value` AS DECIMAL(19, 6)) - CAST(`lt`.`meta_value` AS DECIMAL(19, 6)), 0) AS `discount_total`,
+  CASE
+    WHEN CAST(`ls`.`meta_value` AS DECIMAL(19, 6)) > 0
+      THEN ROUND(GREATEST(CAST(`ls`.`meta_value` AS DECIMAL(19, 6)) - CAST(`lt`.`meta_value` AS DECIMAL(19, 6)), 0)
+        / CAST(`ls`.`meta_value` AS DECIMAL(19, 6)) * 100, 2)
+    ELSE 0
+  END AS `discount_percent`,
+  `o`.`date_created_gmt` + interval 2 hour AS `created_at`,
+  `o`.`customer_id` AS `created_by`,
+  `o`.`date_updated_gmt` + interval 2 hour AS `modified_at`,
+  NULL AS `modified_by`,
+  `pv`.`vendor_id` AS `vendor_id`,
+  `vp`.`provider_name` AS `vendor_name`
+FROM
+  `{prefix}woocommerce_order_items` `oi`
+  JOIN `{prefix}wc_orders` `o` ON (`o`.`id` = `oi`.`order_id`)
+  LEFT JOIN `{prefix}woocommerce_order_itemmeta` `p_id`
+    ON (`p_id`.`order_item_id` = `oi`.`order_item_id` AND `p_id`.`meta_key` = '_product_id')
+  LEFT JOIN `{prefix}woocommerce_order_itemmeta` `qty`
+    ON (`qty`.`order_item_id` = `oi`.`order_item_id` AND `qty`.`meta_key` = '_qty')
+  LEFT JOIN `{prefix}woocommerce_order_itemmeta` `ls`
+    ON (`ls`.`order_item_id` = `oi`.`order_item_id` AND `ls`.`meta_key` = '_line_subtotal')
+  LEFT JOIN `{prefix}woocommerce_order_itemmeta` `lst`
+    ON (`lst`.`order_item_id` = `oi`.`order_item_id` AND `lst`.`meta_key` = '_line_subtotal_tax')
+  LEFT JOIN `{prefix}woocommerce_order_itemmeta` `lt`
+    ON (`lt`.`order_item_id` = `oi`.`order_item_id` AND `lt`.`meta_key` = '_line_total')
+  LEFT JOIN `{prefix}vogo_product_vendor` `pv` ON (`pv`.`product_id` = CAST(`p_id`.`meta_value` AS UNSIGNED))
+  LEFT JOIN `{prefix}vogo_providers` `vp` ON (`vp`.`id` = `pv`.`vendor_id`)
+WHERE
+  `o`.`type` = 'shop_order'
+  AND `oi`.`order_item_type` = 'line_item'
+      ]]></create-sql>
+    </view>
+  </vogo-view>
+
+  <other-requirements>
+  </other-requirements>
+</vogo>

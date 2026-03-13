@@ -1,0 +1,14 @@
+{
+    "name": "VOGO Plugin",
+    "slug": "vogo-plugin",
+    "version": "0.1.0",
+    "download_url": "https://plugins.vogo.family/vogo-plugin/vogo-plugin.zip",
+    "requires": "6.0",
+    "tested": "",
+    "requires_php": "7.4",
+    "last_updated": "2026-03-13",
+    "sections": {
+        "description": "Baza pluginului VOGO pentru WordPress.",
+        "changelog": "<h4>0.1.0</h4><ul><li>Release 0.1.0</li></ul>"
+    }
+}
