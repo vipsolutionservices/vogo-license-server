@@ -493,8 +493,8 @@ function vogo_send_otp(WP_REST_Request $request) {
 
     // Încearcă să trimită OTP prin Twilio
     try {
-        $sid = 'ACd0d4e20bffea3bace8cc727d12371759';
-        $token = 'd22c82273a7e409aa75f63aeeec2d9a6';
+        $sid = null;
+        $token = null;
         $twilio = new Twilio\Rest\Client($sid, $token);
 
         $message = $twilio->messages->create(
