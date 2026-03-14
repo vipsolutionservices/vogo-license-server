@@ -55,7 +55,7 @@ function vogo_check_license(WP_REST_Request $request) {
         ?? ''
     ));
 
-    $webapi_url = esc_url_raw((string) (
+    $webapi_url = sanitize_text_field((string) (
         $request->get_param('URL for webapi')
         ?? $request->get_param('webapi_url')
         ?? ''
