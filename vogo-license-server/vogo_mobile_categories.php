@@ -7,7 +7,7 @@
  * - ordering mobile categories,
  * - add/remove/move operations (admin + ajax).
  *
- * It is loaded from brand-options.php to keep the main file focused.
+ * It is loaded from license-options.php to keep the main file focused.
  */
 
 add_action('admin_post_vogo_save_mobile_categories', 'vogo_brand_options_save_mobile_categories');
@@ -493,7 +493,7 @@ function vogo_brand_options_render_subpage($title) {
     echo '<div class="wrap vogo-brand-subpage">';
     echo '<h1>' . esc_html($title) . '</h1>';
     echo '<p>This page is ready for VOGO WooCommerce module content.</p>';
-    echo '<p><a class="button" href="' . esc_url(admin_url('admin.php?page=vogo-brand-options')) . '">Back to master page</a></p>';
+    echo '<p><a class="button" href="' . esc_url(admin_url('admin.php?page=vogo-license-control-center')) . '">Back to license main page</a></p>';
     echo '</div>';
 }
 
@@ -542,7 +542,7 @@ function vogo_brand_options_render_mobile_categories_page() {
     echo '<div class="vogo-mobile-category-toolbar">';
     echo '<div class="vogo-mobile-category-toolbar-left">';
     echo '<button type="button" class="button button-primary" id="vogo-open-add-modal" title="Add a category to the mobile list">Add category</button>';
-    echo '<a class="button button-secondary" href="' . esc_url(admin_url('admin.php?page=vogo-brand-options')) . '" title="Return to the Brand Control Center">Back to Brand Control Center</a>';
+    echo '<a class="button button-secondary" href="' . esc_url(admin_url('admin.php?page=vogo-license-control-center')) . '" title="Return to the License Control Center">Back to License Control Center</a>';
     echo '</div>';
     echo '</div>';
     echo '<p class="vogo-mobile-category-hint">Drag the handle to reorder categories. The current position is shown in the first column.</p>';

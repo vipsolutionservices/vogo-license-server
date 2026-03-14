@@ -176,7 +176,7 @@ function vogo_brand_options_plugin_check() {
     $xml = vogo_brand_options_load_db_spec($log_lines);
     if (!$xml) {
         vogo_brand_option_set('vogo_plugin_check_log', implode("\n", $log_lines));
-        wp_safe_redirect(add_query_arg(['page' => 'vogo-brand-options', 'vogo-plugin-check' => 'error'], admin_url('admin.php')));
+        wp_safe_redirect(add_query_arg(['page' => 'vogo-license-control-center', 'vogo-plugin-check' => 'error'], admin_url('admin.php')));
         exit;
     }
 
@@ -190,7 +190,7 @@ function vogo_brand_options_plugin_check() {
     if ($check_mode === 'table' && $selected_table === '') {
         $log_lines[] = 'ERROR: Choose section mode selected but no table was provided.';
         vogo_brand_option_set('vogo_plugin_check_log', implode("\n", $log_lines));
-        wp_safe_redirect(add_query_arg(['page' => 'vogo-brand-options', 'vogo-plugin-check' => 'error'], admin_url('admin.php')));
+        wp_safe_redirect(add_query_arg(['page' => 'vogo-license-control-center', 'vogo-plugin-check' => 'error'], admin_url('admin.php')));
         exit;
     }
 
@@ -302,7 +302,7 @@ function vogo_brand_options_plugin_check() {
     if ($check_mode === 'table' && !$selected_special_section && !$matched_selected_table) {
         $log_lines[] = 'ERROR: Selected table `' . $selected_table . '` was not found in vogo.xml.';
         vogo_brand_option_set('vogo_plugin_check_log', implode("\n", $log_lines));
-        wp_safe_redirect(add_query_arg(['page' => 'vogo-brand-options', 'vogo-plugin-check' => 'error'], admin_url('admin.php')));
+        wp_safe_redirect(add_query_arg(['page' => 'vogo-license-control-center', 'vogo-plugin-check' => 'error'], admin_url('admin.php')));
         exit;
     }
 
@@ -518,7 +518,7 @@ function vogo_brand_options_plugin_check() {
     }
 
     vogo_brand_option_set('vogo_plugin_check_log', implode("\n", $log_lines));
-    wp_safe_redirect(add_query_arg(['page' => 'vogo-brand-options', 'vogo-plugin-check' => 'done'], admin_url('admin.php')));
+    wp_safe_redirect(add_query_arg(['page' => 'vogo-license-control-center', 'vogo-plugin-check' => 'done'], admin_url('admin.php')));
     exit;
 }
 

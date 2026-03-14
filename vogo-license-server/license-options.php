@@ -3,7 +3,7 @@
  * VOGO Brand Options Admin Module.
  *
  * This file defines the admin UI, validation, and persistence logic used by
- * the Brand Control Center page available in WordPress admin.
+ * the License Control Center page available in WordPress admin.
  */
 
 if (!defined('ABSPATH')) {
@@ -12,6 +12,7 @@ if (!defined('ABSPATH')) {
 
 require_once __DIR__ . '/vogo_user_roles.php';
 require_once __DIR__ . '/brand-version-history.php';
+require_once __DIR__ . '/vogo_license_admin.php';
 
 function vogo_brand_options_table_name() {
     global $wpdb;
@@ -20,11 +21,11 @@ function vogo_brand_options_table_name() {
 }
 
 /**
- * Enqueue media and page-specific assets used by Brand Control Center screens.
+ * Enqueue media and page-specific assets used by License Control Center screens.
  */
 function vogo_brand_options_enqueue_admin_assets($hook) {
     $page = isset($_GET['page']) ? sanitize_key($_GET['page']) : '';
-    if (!in_array($page, ['vogo-brand-options', 'vogo-mobile-categories', 'vogo-jwt-secure'], true)) {
+    if (!in_array($page, ['vogo-license-control-center', 'vogo-mobile-categories', 'vogo-jwt-secure'], true)) {
         return;
     }
 
@@ -397,20 +398,52 @@ function vogo_brand_option_set($key, $value, $description = null, $category = nu
 }
 
 /**
- * Register Brand Control Center and related submenu entries in admin.
+ * Register License Control Center and related submenu entries in admin.
  */
 function vogo_brand_options_register_menu() {
     add_menu_page(
         'VOGO WooCommerce Mobile Apps',
         'VOGO WooCommerce Mobile Apps',
         'manage_options',
-        'vogo-brand-options',
-        'vogo_brand_options_render_page_override',
+        'vogo-license-dashboard',
+        'vogo_brand_options_render_license_dashboard_page',
         'dashicons-store',
         56
     );
     add_submenu_page(
-        'vogo-brand-options',
+        'vogo-license-dashboard',
+        'License Dashboard',
+        'License Dashboard',
+        'manage_options',
+        'vogo-license-dashboard',
+        'vogo_brand_options_render_license_dashboard_page'
+    );
+    add_submenu_page(
+        'vogo-license-dashboard',
+        'Running Status',
+        'Running Status',
+        'manage_options',
+        'vogo-running-status',
+        'vogo_brand_options_render_running_status_page'
+    );
+    add_submenu_page(
+        'vogo-license-dashboard',
+        'License Table',
+        'License Table',
+        'manage_options',
+        'vogo-license-table',
+        'vogo_brand_options_render_license_table_page'
+    );
+    add_submenu_page(
+        'vogo-license-dashboard',
+        'License Control Center',
+        'License Control Center',
+        'manage_options',
+        'vogo-license-control-center',
+        'vogo_brand_options_render_page_override'
+    );
+    add_submenu_page(
+        'vogo-license-dashboard',
         'Version history',
         'Version history',
         'manage_options',
@@ -418,7 +451,7 @@ function vogo_brand_options_register_menu() {
         'vogo_brand_version_history_render_page'
     );
     add_submenu_page(
-        'vogo-brand-options',
+        'vogo-license-dashboard',
         'View logs',
         'View logs',
         'manage_options',
@@ -426,7 +459,7 @@ function vogo_brand_options_register_menu() {
         'vogo_brand_options_render_logs_page'
     );
     add_submenu_page(
-        'vogo-brand-options',
+        'vogo-license-dashboard',
         'Mobile app categories',
         'Mobile app categories',
         'manage_options',
@@ -434,7 +467,7 @@ function vogo_brand_options_register_menu() {
         'vogo_brand_options_render_mobile_categories_page'
     );
     add_submenu_page(
-        'vogo-brand-options',
+        'vogo-license-dashboard',
         'User roles',
         'User roles',
         'manage_options',
@@ -442,7 +475,7 @@ function vogo_brand_options_register_menu() {
         'vogo_brand_options_render_user_roles_page'
     );
     add_submenu_page(
-        'vogo-brand-options',
+        'vogo-license-dashboard',
         'JWT Secure',
         'JWT Secure',
         'manage_options',
@@ -455,12 +488,12 @@ function vogo_brand_options_register_menu() {
 add_action('admin_menu', 'vogo_brand_options_register_menu');
 
 /**
- * Render the updated Brand Control Center page.
+ * Render the updated License Control Center page.
  * Keeps quick links editable and stored in the custom table, removes subpage buttons,
  * and shows an empty "Other settings" section.
  */
 /**
- * Render the custom Brand Control Center page layout and grouped sections.
+ * Render the custom License Control Center page layout and grouped sections.
  */
 function vogo_brand_options_render_page_override() {
     // Log the page render for diagnostics.
@@ -534,7 +567,7 @@ function vogo_brand_options_render_page_override() {
 
     echo '<div class="wrap vogo-brand-options">';
     echo '<div class="vogo-brand-header">';
-    echo '<h1>VOGO WooCommerce – Brand Control Center</h1>';
+    echo '<h1>VOGO WooCommerce – License Control Center</h1>';
     echo '<button type="submit" class="button button-primary vogo-brand-header-action" form="vogo-brand-options-form">Save settings</button>';
     echo '</div>';
 
@@ -1380,7 +1413,7 @@ function vogo_brand_options_render_page_override() {
                         return;
                     }
 
-                    if (/Brand Control Center/i.test(node.textContent || "")) {
+                    if (/License Control Center/i.test(node.textContent || "")) {
                         node.remove();
                     }
                 });
@@ -1545,7 +1578,7 @@ function vogo_brand_options_render_page_override() {
 }
 
 /**
- * Process submitted Brand Control Center settings and persist sanitized values.
+ * Process submitted License Control Center settings and persist sanitized values.
  */
 function vogo_brand_options_save() {
     // Log the start of a save request with caller context.
@@ -1712,7 +1745,7 @@ function vogo_brand_options_save() {
     // Log completion of the save request.
     vogo_error_log3('[brand-options][save] Finished save request.');
 
-    wp_safe_redirect(add_query_arg(['page' => 'vogo-brand-options', 'updated' => '1'], admin_url('admin.php')));
+    wp_safe_redirect(add_query_arg(['page' => 'vogo-license-control-center', 'updated' => '1'], admin_url('admin.php')));
     exit;
 }
 
@@ -1763,7 +1796,7 @@ function vogo_brand_options_additional_settings_check() {
     }
 
     vogo_brand_option_set('vogo_plugin_check_log', implode("\n", $log_lines));
-    wp_safe_redirect(add_query_arg(['page' => 'vogo-brand-options', 'vogo-plugin-check' => 'done'], admin_url('admin.php')));
+    wp_safe_redirect(add_query_arg(['page' => 'vogo-license-control-center', 'vogo-plugin-check' => 'done'], admin_url('admin.php')));
     exit;
 }
 
@@ -1780,7 +1813,7 @@ require_once __DIR__ . '/vogo_jwt_config.php';
  */
 function vogo_brand_options_render_page() {
     // Log render event to correlate admin activity with settings screens.
-    vogo_error_log3('[brand-options] Rendering Brand Control Center page.');
+    vogo_error_log3('[brand-options] Rendering License Control Center page.');
 
     $definitions = vogo_brand_options_get_definitions();
 
@@ -1843,7 +1876,7 @@ function vogo_brand_options_render_page() {
     $support_url = 'https://wa.me/' . $support_number_digits . '?text=' . rawurlencode($support_message);
 
     echo '<div class="wrap vogo-brand-options">';
-    echo '<h1>VOGO WooCommerce – Brand Control Center</h1>';
+    echo '<h1>VOGO WooCommerce – License Control Center</h1>';
 
     $reminder_class = ' vogo-version-reminder--hidden';
     echo '<div class="notice notice-info vogo-version-reminder' . esc_attr($reminder_class) . '" data-reminder-scope="brand-options"><p>You updated configuration: Do not forget to change version to next one X.X.X in order to push to your mobile application.</p></div>';
