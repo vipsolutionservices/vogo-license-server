@@ -26,7 +26,97 @@ add_action('rest_api_init', function () {
         'callback' => 'vogo_activate_and_get_updates',
         'permission_callback' => 'vogo_permission_check',
     ]);
+
+    register_rest_route('vogo/v1', '/checkLicense', [
+        'methods' => 'POST',
+        'callback' => 'vogo_check_license',
+        'permission_callback' => 'vogo_permission_check',
+    ]);
 });
+
+/**
+ * Check license level by matching encrypted-license table columns.
+ *
+ * Required body params:
+ * - license code (or license_code)
+ * - URL for webapi (or webapi_url)
+ * - activation code (or activation_code)
+ * - fiscal code (or fiscal_code)
+ */
+function vogo_check_license(WP_REST_Request $request) {
+    global $wpdb;
+
+    $module = 'activation-endpoints.php.vogo_check_license';
+    $table = $wpdb->prefix . 'cvogo_encrypted_data';
+
+    $license_code = sanitize_text_field((string) (
+        $request->get_param('license code')
+        ?? $request->get_param('license_code')
+        ?? ''
+    ));
+
+    $webapi_url = esc_url_raw((string) (
+        $request->get_param('URL for webapi')
+        ?? $request->get_param('webapi_url')
+        ?? ''
+    ));
+
+    $activation_code = sanitize_text_field((string) (
+        $request->get_param('activation code')
+        ?? $request->get_param('activation_code')
+        ?? ''
+    ));
+
+    $fiscal_code = sanitize_text_field((string) (
+        $request->get_param('fiscal code')
+        ?? $request->get_param('fiscal_code')
+        ?? ''
+    ));
+
+    if ($license_code === '' || $webapi_url === '' || $activation_code === '' || $fiscal_code === '') {
+        return new WP_REST_Response([
+            'success' => null,
+            'license_level' => null,
+            'error' => 'Missing required parameters.',
+            'module_bke' => $module,
+        ], 400);
+    }
+
+    $query = $wpdb->prepare(
+        "SELECT col4 AS license_level
+         FROM {$table}
+         WHERE col1 = %s
+           AND col2 = %s
+           AND col5 = %s
+           AND col6 = %s
+         LIMIT 1",
+        $license_code,
+        $webapi_url,
+        $activation_code,
+        $fiscal_code
+    );
+
+    $record = $wpdb->get_row($query, ARRAY_A);
+
+    if ($record === null) {
+        if (!empty($wpdb->last_error)) {
+            vogo_error_log3("[checkLicense] SQL error={$wpdb->last_error}", $module);
+        }
+
+        return new WP_REST_Response([
+            'success' => null,
+            'license_level' => null,
+            'error' => 'License data not found.',
+            'module_bke' => $module,
+        ], 404);
+    }
+
+    return new WP_REST_Response([
+        'success' => true,
+        'license_level' => $record['license_level'],
+        'module_bke' => $module,
+    ], 200);
+}
 
 /**
  * Main activation/update endpoint callback.
