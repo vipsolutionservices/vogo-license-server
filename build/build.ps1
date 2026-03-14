@@ -1,7 +1,7 @@
 $root = Split-Path -Parent $PSScriptRoot
-$pluginFolder = Join-Path $root "vogo-plugin"
+$pluginFolder = Join-Path $root "vogo-license-server"
 $buildFolder = Join-Path $root "build"
-$zipFile = Join-Path $buildFolder "vogo-plugin.zip"
+$zipFile = Join-Path $buildFolder "vogo-license-server.zip"
 
 Write-Host "Building plugin..."
 
