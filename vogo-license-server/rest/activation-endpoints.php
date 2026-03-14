@@ -34,6 +34,7 @@ add_action('rest_api_init', function () {
     ]);
 });
 
+
 /**
  * Check license level by matching encrypted-license table columns.
  *
@@ -55,7 +56,7 @@ function vogo_check_license(WP_REST_Request $request) {
         ?? ''
     ));
 
-    $webapi_url = esc_url_raw((string) (
+    $webapi_url = sanitize_text_field((string) (
         $request->get_param('URL for webapi')
         ?? $request->get_param('webapi_url')
         ?? ''
@@ -81,6 +82,9 @@ function vogo_check_license(WP_REST_Request $request) {
             'module_bke' => $module,
         ], 400);
     }
+
+    $webapi_url = str_replace('www.', '', $webapi_url);
+    $webapi_url = str_replace('https://', '', $webapi_url);
 
     $query = $wpdb->prepare(
         "SELECT col4 AS license_level
