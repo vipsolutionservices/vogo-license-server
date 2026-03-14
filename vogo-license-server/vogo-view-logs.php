@@ -1,5 +1,5 @@
 <?php
-// Dedicated View Logs screen for the Brand Control Center.
+// Dedicated View Logs screen for the License Control Center.
 if (!current_user_can('manage_options')) {
     wp_die('Insufficient permissions.');
 }
@@ -75,7 +75,7 @@ if ($selected_file !== '') {
 echo '<div class="wrap vogo-brand-logs">';
 echo '<h1>VOGO Logs</h1>';
 echo '<p class="vogo-muted">Source folder: ' . esc_html($log_dir) . '</p>';
-echo '<p><a class="button button-secondary" href="' . esc_url(admin_url('admin.php?page=vogo-brand-options')) . '">Back to Brand Control Center</a></p>';
+echo '<p><a class="button button-secondary" href="' . esc_url(admin_url('admin.php?page=vogo-license-control-center')) . '">Back to License Control Center</a></p>';
 
 if ($log_status !== '') {
     echo '<div class="notice notice-warning"><p>' . esc_html($log_status) . '</p></div>';

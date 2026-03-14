@@ -52,7 +52,7 @@ define('VOGO-WHATSAPPP-SUPPORT', '+40723313296');
 
 $rest_dir = plugin_dir_path(__FILE__) . 'rest/';
 require_once $rest_dir . 'vogolib.php'; //general libraries / utilities
-require_once plugin_dir_path(__FILE__) . 'brand-options.php';
+require_once plugin_dir_path(__FILE__) . 'license-options.php';
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;

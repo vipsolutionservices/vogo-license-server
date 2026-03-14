@@ -123,7 +123,7 @@ function vogo_brand_options_render_user_roles_page() {
     }
 
     echo '<div class="vogo-user-roles-toolbar">';
-    echo '<a class="button button-secondary" href="' . esc_url(admin_url('admin.php?page=vogo-brand-options')) . '">Back to Brand Control Center</a>';
+    echo '<a class="button button-secondary" href="' . esc_url(admin_url('admin.php?page=vogo-license-control-center')) . '">Back to License Control Center</a>';
     echo '</div>';
 
     echo '<div class="vogo-user-roles-layout">';
