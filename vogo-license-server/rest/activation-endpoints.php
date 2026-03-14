@@ -30,7 +30,7 @@ add_action('rest_api_init', function () {
     register_rest_route('vogo/v1', '/checkLicense', [
         'methods' => 'POST',
         'callback' => 'vogo_check_license',
-        'permission_callback' => 'vogo_permission_check',
+        'permission_callback' => '__return_true',
     ]);
 });
 
